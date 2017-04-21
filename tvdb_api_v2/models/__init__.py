@@ -42,6 +42,7 @@ from .series_images_count import SeriesImagesCount
 from .series_images_counts import SeriesImagesCounts
 from .series_images_query_param import SeriesImagesQueryParam
 from .series_images_query_params import SeriesImagesQueryParams
+from .series_search import SeriesSearch
 from .series_search_data import SeriesSearchData
 from .token import Token
 from .update import Update
