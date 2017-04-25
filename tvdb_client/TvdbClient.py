@@ -25,6 +25,12 @@ class TvdbClient(object):
     def authenticate(self):
         token = AuthenticationApi(self.api_client).login_post(Auth(API_KEY))
         self.configuration.api_key['Authorization'] = token.token
+        return token
+
+    def refresh_token(self):
+        token = AuthenticationApi(self.api_client).refresh_token_get()
+        self.configuration.api_key['Authorization'] = token.token
+        return token
 
     def search_series_by_name(self, series_name, best_result=False):
         params = {'name': series_name, '_preload_content': True}
