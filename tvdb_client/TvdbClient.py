@@ -14,16 +14,17 @@ HOST = "https://api.thetvdb.com"
 
 
 class TvdbClient(object):
-    def __init__(self):
+    def __init__(self, api_key=API_KEY):
         # setup configuration
         self.configuration = Configuration()
         self.configuration.host = HOST
+        self.configuration.api_key['ApiKey'] = api_key
         self.configuration.api_key_prefix['Authorization'] = 'Bearer'
-        # create tvdb_client
+        # create client
         self.api_client = ApiClient()
 
     def authenticate(self):
-        token = AuthenticationApi(self.api_client).login_post(Auth(API_KEY))
+        token = AuthenticationApi(self.api_client).login_post(Auth(self.configuration.api_key['ApiKey']))
         self.configuration.api_key['Authorization'] = token.token
         return token
 
@@ -31,6 +32,10 @@ class TvdbClient(object):
         token = AuthenticationApi(self.api_client).refresh_token_get()
         self.configuration.api_key['Authorization'] = token.token
         return token
+
+    def clear_token(self):
+        # use with None otherwise a KeyError is raised
+        self.configuration.api_key.pop('Authorization', None)
 
     def search_series_by_name(self, series_name, best_result=False):
         params = {'name': series_name, '_preload_content': True}
