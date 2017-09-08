@@ -212,7 +212,7 @@
           "200": {
             "description": "An array of results that match the provided query.",
             "schema": {
-              "$ref": "#/definitions/SeriesSearchData"
+              "$ref": "#/definitions/SeriesSearch"
             }
           },
           "401": {
@@ -1773,6 +1773,19 @@
           "items": {
             "$ref": "#/definitions/SeriesImagesQueryParam"
           }
+        }
+      }
+    },
+    "SeriesSearch": {
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SeriesSearchData"
+          }
+        },
+        "errors": {
+          "$ref": "#/definitions/JSONErrors"
         }
       }
     },
