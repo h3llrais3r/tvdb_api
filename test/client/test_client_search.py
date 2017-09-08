@@ -1,5 +1,6 @@
 import unittest
 
+from tvdb_api_v2.models.series_search import SeriesSearch
 from tvdb_api_v2.models.series_search_data import SeriesSearchData
 from tvdb_api_v2.rest import ApiException
 from tvdb_client import TvdbClient
@@ -20,7 +21,7 @@ class TestClientSearch(unittest.TestCase):
         response = self.client.search_series_by_name('ash vs evil dead')
         # asserts
         self.assertIsNotNone(response)
-        self.assertIsInstance(response, SeriesSearchData)
+        self.assertIsInstance(response, SeriesSearch)
         self.assertTrue(len(response.data) == 1)
         self.assertTrue(response.data[0].id == 296295)
 
@@ -44,8 +45,7 @@ class TestClientSearch(unittest.TestCase):
         # asserts
         self.assertIsNotNone(response)
         self.assertIsInstance(response, SeriesSearchData)
-        self.assertTrue(len(response.data) == 1)
-        self.assertTrue(response.data[0].id == 296295)
+        self.assertTrue(response.id == 296295)
 
     def test_search_series_by_id_401(self):
         self.client.clear_token()
