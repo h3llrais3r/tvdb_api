@@ -1,6 +1,6 @@
 # tvdb_api_v2.SeriesApi
 
-All URIs are relative to *https://localhost/*
+All URIs are relative to *https://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -27,7 +27,7 @@ Returns actors for the given series id
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException
@@ -79,7 +79,7 @@ All episodes for a given series. Paginated with 100 results per page.
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException
@@ -133,7 +133,7 @@ This route allows the user to query against episodes for the given series. The r
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException
@@ -201,7 +201,7 @@ Returns the allowed query keys for the `/series/{id}/episodes/query` route
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException
@@ -253,7 +253,7 @@ Returns a summary of the episodes and seasons available for the series.  __Note_
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException
@@ -305,7 +305,7 @@ Returns a series records, filtered by the supplied comma-separated list of keys.
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException
@@ -361,7 +361,7 @@ Returns the list of keys available for the `/series/{id}/filter` route
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException
@@ -415,7 +415,7 @@ Returns a series records that contains all information known about a particular 
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException
@@ -469,7 +469,7 @@ Returns header information only about the given series ID.
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException
@@ -522,7 +522,7 @@ Returns a summary of the images for a particular series
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException
@@ -576,7 +576,7 @@ Query images for the given series ID.
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException
@@ -636,7 +636,7 @@ Returns the allowed query keys for the `/series/{id}/images/query` route. Contai
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException

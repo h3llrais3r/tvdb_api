@@ -35,7 +35,9 @@ class TestEpisodeDataQueryParams(unittest.TestCase):
         """
         Test EpisodeDataQueryParams
         """
-        model = tvdb_api_v2.models.episode_data_query_params.EpisodeDataQueryParams()
+        # FIXME: construct object with mandatory attributes with example values
+        #model = tvdb_api_v2.models.episode_data_query_params.EpisodeDataQueryParams()
+        pass
 
 
 if __name__ == '__main__':

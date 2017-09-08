@@ -106,12 +106,11 @@ class SeriesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/series/{id}/actors'.replace('{format}', 'json')
         path_params = {}
         if 'id' in params:
             path_params['id'] = params['id']
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -130,7 +129,7 @@ class SeriesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/series/{id}/actors', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -213,14 +212,13 @@ class SeriesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/series/{id}/episodes'.replace('{format}', 'json')
         path_params = {}
         if 'id' in params:
             path_params['id'] = params['id']
 
-        query_params = {}
+        query_params = []
         if 'page' in params:
-            query_params['page'] = params['page']
+            query_params.append(('page', params['page']))
 
         header_params = {}
 
@@ -239,7 +237,7 @@ class SeriesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/series/{id}/episodes', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -336,26 +334,25 @@ class SeriesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/series/{id}/episodes/query'.replace('{format}', 'json')
         path_params = {}
         if 'id' in params:
             path_params['id'] = params['id']
 
-        query_params = {}
+        query_params = []
         if 'absolute_number' in params:
-            query_params['absoluteNumber'] = params['absolute_number']
+            query_params.append(('absoluteNumber', params['absolute_number']))
         if 'aired_season' in params:
-            query_params['airedSeason'] = params['aired_season']
+            query_params.append(('airedSeason', params['aired_season']))
         if 'aired_episode' in params:
-            query_params['airedEpisode'] = params['aired_episode']
+            query_params.append(('airedEpisode', params['aired_episode']))
         if 'dvd_season' in params:
-            query_params['dvdSeason'] = params['dvd_season']
+            query_params.append(('dvdSeason', params['dvd_season']))
         if 'dvd_episode' in params:
-            query_params['dvdEpisode'] = params['dvd_episode']
+            query_params.append(('dvdEpisode', params['dvd_episode']))
         if 'imdb_id' in params:
-            query_params['imdbId'] = params['imdb_id']
+            query_params.append(('imdbId', params['imdb_id']))
         if 'page' in params:
-            query_params['page'] = params['page']
+            query_params.append(('page', params['page']))
 
         header_params = {}
         if 'accept_language' in params:
@@ -376,7 +373,7 @@ class SeriesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/series/{id}/episodes/query', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -457,12 +454,11 @@ class SeriesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/series/{id}/episodes/query/params'.replace('{format}', 'json')
         path_params = {}
         if 'id' in params:
             path_params['id'] = params['id']
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -481,7 +477,7 @@ class SeriesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/series/{id}/episodes/query/params', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -562,12 +558,11 @@ class SeriesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/series/{id}/episodes/summary'.replace('{format}', 'json')
         path_params = {}
         if 'id' in params:
             path_params['id'] = params['id']
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -586,7 +581,7 @@ class SeriesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/series/{id}/episodes/summary', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -674,14 +669,13 @@ class SeriesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/series/{id}/filter'.replace('{format}', 'json')
         path_params = {}
         if 'id' in params:
             path_params['id'] = params['id']
 
-        query_params = {}
+        query_params = []
         if 'keys' in params:
-            query_params['keys'] = params['keys']
+            query_params.append(('keys', params['keys']))
 
         header_params = {}
         if 'accept_language' in params:
@@ -702,7 +696,7 @@ class SeriesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/series/{id}/filter', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -785,12 +779,11 @@ class SeriesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/series/{id}/filter/params'.replace('{format}', 'json')
         path_params = {}
         if 'id' in params:
             path_params['id'] = params['id']
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
         if 'accept_language' in params:
@@ -811,7 +804,7 @@ class SeriesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/series/{id}/filter/params', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -894,12 +887,11 @@ class SeriesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/series/{id}'.replace('{format}', 'json')
         path_params = {}
         if 'id' in params:
             path_params['id'] = params['id']
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
         if 'accept_language' in params:
@@ -920,7 +912,7 @@ class SeriesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/series/{id}', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -1003,12 +995,11 @@ class SeriesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/series/{id}'.replace('{format}', 'json')
         path_params = {}
         if 'id' in params:
             path_params['id'] = params['id']
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
         if 'accept_language' in params:
@@ -1029,7 +1020,7 @@ class SeriesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'HEAD',
+        return self.api_client.call_api('/series/{id}', 'HEAD',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -1112,12 +1103,11 @@ class SeriesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/series/{id}/images'.replace('{format}', 'json')
         path_params = {}
         if 'id' in params:
             path_params['id'] = params['id']
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
         if 'accept_language' in params:
@@ -1138,7 +1128,7 @@ class SeriesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/series/{id}/images', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -1227,18 +1217,17 @@ class SeriesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/series/{id}/images/query'.replace('{format}', 'json')
         path_params = {}
         if 'id' in params:
             path_params['id'] = params['id']
 
-        query_params = {}
+        query_params = []
         if 'key_type' in params:
-            query_params['keyType'] = params['key_type']
+            query_params.append(('keyType', params['key_type']))
         if 'resolution' in params:
-            query_params['resolution'] = params['resolution']
+            query_params.append(('resolution', params['resolution']))
         if 'sub_key' in params:
-            query_params['subKey'] = params['sub_key']
+            query_params.append(('subKey', params['sub_key']))
 
         header_params = {}
         if 'accept_language' in params:
@@ -1259,7 +1248,7 @@ class SeriesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/series/{id}/images/query', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -1342,12 +1331,11 @@ class SeriesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/series/{id}/images/query/params'.replace('{format}', 'json')
         path_params = {}
         if 'id' in params:
             path_params['id'] = params['id']
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
         if 'accept_language' in params:
@@ -1368,7 +1356,7 @@ class SeriesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/series/{id}/images/query/params', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,

@@ -35,7 +35,9 @@ class TestSeriesImagesQueryParams(unittest.TestCase):
         """
         Test SeriesImagesQueryParams
         """
-        model = tvdb_api_v2.models.series_images_query_params.SeriesImagesQueryParams()
+        # FIXME: construct object with mandatory attributes with example values
+        #model = tvdb_api_v2.models.series_images_query_params.SeriesImagesQueryParams()
+        pass
 
 
 if __name__ == '__main__':

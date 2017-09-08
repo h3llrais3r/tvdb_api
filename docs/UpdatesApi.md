@@ -1,6 +1,6 @@
 # tvdb_api_v2.UpdatesApi
 
-All URIs are relative to *https://localhost/*
+All URIs are relative to *https://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -17,7 +17,7 @@ Returns an array of series that have changed in a maximum of one week blocks sin
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException
@@ -73,7 +73,7 @@ Returns an array of valid query keys for the `/updated/query/params` route.
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException

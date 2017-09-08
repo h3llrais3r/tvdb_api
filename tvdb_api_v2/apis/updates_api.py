@@ -110,14 +110,13 @@ class UpdatesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/updated/query'.replace('{format}', 'json')
         path_params = {}
 
-        query_params = {}
+        query_params = []
         if 'from_time' in params:
-            query_params['fromTime'] = params['from_time']
+            query_params.append(('fromTime', params['from_time']))
         if 'to_time' in params:
-            query_params['toTime'] = params['to_time']
+            query_params.append(('toTime', params['to_time']))
 
         header_params = {}
         if 'accept_language' in params:
@@ -138,7 +137,7 @@ class UpdatesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/updated/query', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -213,10 +212,9 @@ class UpdatesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/updated/query/params'.replace('{format}', 'json')
         path_params = {}
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -235,7 +233,7 @@ class UpdatesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/updated/query/params', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,

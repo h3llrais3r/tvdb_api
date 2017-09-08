@@ -108,12 +108,11 @@ class EpisodesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/episodes/{id}'.replace('{format}', 'json')
         path_params = {}
         if 'id' in params:
             path_params['id'] = params['id']
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
         if 'accept_language' in params:
@@ -134,7 +133,7 @@ class EpisodesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/episodes/{id}', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,

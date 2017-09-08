@@ -106,10 +106,9 @@ class AuthenticationApi(object):
 
         collection_formats = {}
 
-        resource_path = '/login'.replace('{format}', 'json')
         path_params = {}
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -130,7 +129,7 @@ class AuthenticationApi(object):
         # Authentication setting
         auth_settings = []
 
-        return self.api_client.call_api(resource_path, 'POST',
+        return self.api_client.call_api('/login', 'POST',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -205,10 +204,9 @@ class AuthenticationApi(object):
 
         collection_formats = {}
 
-        resource_path = '/refresh_token'.replace('{format}', 'json')
         path_params = {}
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -227,7 +225,7 @@ class AuthenticationApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/refresh_token', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,

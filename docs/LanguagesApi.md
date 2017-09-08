@@ -1,6 +1,6 @@
 # tvdb_api_v2.LanguagesApi
 
-All URIs are relative to *https://localhost/*
+All URIs are relative to *https://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -17,7 +17,7 @@ All available languages. These language abbreviations can be used in the `Accept
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException
@@ -65,7 +65,7 @@ Information about a particular language, given the language ID.
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException

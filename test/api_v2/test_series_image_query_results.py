@@ -35,7 +35,9 @@ class TestSeriesImageQueryResults(unittest.TestCase):
         """
         Test SeriesImageQueryResults
         """
-        model = tvdb_api_v2.models.series_image_query_results.SeriesImageQueryResults()
+        # FIXME: construct object with mandatory attributes with example values
+        #model = tvdb_api_v2.models.series_image_query_results.SeriesImageQueryResults()
+        pass
 
 
 if __name__ == '__main__':

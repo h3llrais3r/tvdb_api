@@ -57,7 +57,7 @@ class SearchApi(object):
         :param str imdb_id: IMDB id of the series
         :param str zap2it_id: Zap2it ID of the series to search for.
         :param str accept_language: Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields.
-        :return: SeriesSearchData
+        :return: SeriesSearch
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -85,7 +85,7 @@ class SearchApi(object):
         :param str imdb_id: IMDB id of the series
         :param str zap2it_id: Zap2it ID of the series to search for.
         :param str accept_language: Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields.
-        :return: SeriesSearchData
+        :return: SeriesSearch
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -109,16 +109,15 @@ class SearchApi(object):
 
         collection_formats = {}
 
-        resource_path = '/search/series'.replace('{format}', 'json')
         path_params = {}
 
-        query_params = {}
+        query_params = []
         if 'name' in params:
-            query_params['name'] = params['name']
+            query_params.append(('name', params['name']))
         if 'imdb_id' in params:
-            query_params['imdbId'] = params['imdb_id']
+            query_params.append(('imdbId', params['imdb_id']))
         if 'zap2it_id' in params:
-            query_params['zap2itId'] = params['zap2it_id']
+            query_params.append(('zap2itId', params['zap2it_id']))
 
         header_params = {}
         if 'accept_language' in params:
@@ -139,14 +138,14 @@ class SearchApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/search/series', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
                                         body=body_params,
                                         post_params=form_params,
                                         files=local_var_files,
-                                        response_type='SeriesSearchData',
+                                        response_type='SeriesSearch',
                                         auth_settings=auth_settings,
                                         callback=params.get('callback'),
                                         _return_http_data_only=params.get('_return_http_data_only'),
@@ -214,10 +213,9 @@ class SearchApi(object):
 
         collection_formats = {}
 
-        resource_path = '/search/series/params'.replace('{format}', 'json')
         path_params = {}
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -236,7 +234,7 @@ class SearchApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/search/series/params', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,

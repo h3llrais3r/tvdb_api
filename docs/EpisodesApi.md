@@ -1,6 +1,6 @@
 # tvdb_api_v2.EpisodesApi
 
-All URIs are relative to *https://localhost/*
+All URIs are relative to *https://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -16,7 +16,7 @@ Returns the full information for a given episode id. __Deprecation Warning:__ Th
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException

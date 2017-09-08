@@ -100,10 +100,9 @@ class UsersApi(object):
 
         collection_formats = {}
 
-        resource_path = '/user/favorites'.replace('{format}', 'json')
         path_params = {}
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -122,7 +121,7 @@ class UsersApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/user/favorites', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -203,12 +202,11 @@ class UsersApi(object):
 
         collection_formats = {}
 
-        resource_path = '/user/favorites/{id}'.replace('{format}', 'json')
         path_params = {}
         if 'id' in params:
             path_params['id'] = params['id']
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -227,7 +225,7 @@ class UsersApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'DELETE',
+        return self.api_client.call_api('/user/favorites/{id}', 'DELETE',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -308,12 +306,11 @@ class UsersApi(object):
 
         collection_formats = {}
 
-        resource_path = '/user/favorites/{id}'.replace('{format}', 'json')
         path_params = {}
         if 'id' in params:
             path_params['id'] = params['id']
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -332,7 +329,7 @@ class UsersApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'PUT',
+        return self.api_client.call_api('/user/favorites/{id}', 'PUT',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -407,10 +404,9 @@ class UsersApi(object):
 
         collection_formats = {}
 
-        resource_path = '/user'.replace('{format}', 'json')
         path_params = {}
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -429,7 +425,7 @@ class UsersApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/user', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -504,10 +500,9 @@ class UsersApi(object):
 
         collection_formats = {}
 
-        resource_path = '/user/ratings'.replace('{format}', 'json')
         path_params = {}
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -526,7 +521,7 @@ class UsersApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/user/ratings', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -612,14 +607,13 @@ class UsersApi(object):
 
         collection_formats = {}
 
-        resource_path = '/user/ratings/{itemType}/{itemId}'.replace('{format}', 'json')
         path_params = {}
         if 'item_type' in params:
             path_params['itemType'] = params['item_type']
         if 'item_id' in params:
             path_params['itemId'] = params['item_id']
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -638,7 +632,7 @@ class UsersApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'DELETE',
+        return self.api_client.call_api('/user/ratings/{itemType}/{itemId}', 'DELETE',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -729,7 +723,6 @@ class UsersApi(object):
 
         collection_formats = {}
 
-        resource_path = '/user/ratings/{itemType}/{itemId}/{itemRating}'.replace('{format}', 'json')
         path_params = {}
         if 'item_type' in params:
             path_params['itemType'] = params['item_type']
@@ -738,7 +731,7 @@ class UsersApi(object):
         if 'item_rating' in params:
             path_params['itemRating'] = params['item_rating']
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -757,7 +750,7 @@ class UsersApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'PUT',
+        return self.api_client.call_api('/user/ratings/{itemType}/{itemId}/{itemRating}', 'PUT',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -835,12 +828,11 @@ class UsersApi(object):
 
         collection_formats = {}
 
-        resource_path = '/user/ratings/query'.replace('{format}', 'json')
         path_params = {}
 
-        query_params = {}
+        query_params = []
         if 'item_type' in params:
-            query_params['itemType'] = params['item_type']
+            query_params.append(('itemType', params['item_type']))
 
         header_params = {}
 
@@ -859,7 +851,7 @@ class UsersApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/user/ratings/query', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -934,10 +926,9 @@ class UsersApi(object):
 
         collection_formats = {}
 
-        resource_path = '/user/ratings/query/params'.replace('{format}', 'json')
         path_params = {}
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -956,7 +947,7 @@ class UsersApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/user/ratings/query/params', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,

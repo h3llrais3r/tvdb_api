@@ -1,6 +1,6 @@
 # tvdb_api_v2.SearchApi
 
-All URIs are relative to *https://localhost/*
+All URIs are relative to *https://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **search_series_get**
-> SeriesSearchData search_series_get(name=name, imdb_id=imdb_id, zap2it_id=zap2it_id, accept_language=accept_language)
+> SeriesSearch search_series_get(name=name, imdb_id=imdb_id, zap2it_id=zap2it_id, accept_language=accept_language)
 
 
 
@@ -17,7 +17,7 @@ Allows the user to search for a series based on the following parameters.
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException
@@ -53,7 +53,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SeriesSearchData**](SeriesSearchData.md)
+[**SeriesSearch**](SeriesSearch.md)
 
 ### Authorization
 
@@ -75,7 +75,7 @@ Returns an array of parameters to query by in the `/search/series` route.
 
 ### Example 
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException

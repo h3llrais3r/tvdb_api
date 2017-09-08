@@ -35,7 +35,9 @@ class TestLanguageData(unittest.TestCase):
         """
         Test LanguageData
         """
-        model = tvdb_api_v2.models.language_data.LanguageData()
+        # FIXME: construct object with mandatory attributes with example values
+        #model = tvdb_api_v2.models.language_data.LanguageData()
+        pass
 
 
 if __name__ == '__main__':

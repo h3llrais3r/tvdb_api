@@ -35,7 +35,9 @@ class TestUserRatingsQueryParams(unittest.TestCase):
         """
         Test UserRatingsQueryParams
         """
-        model = tvdb_api_v2.models.user_ratings_query_params.UserRatingsQueryParams()
+        # FIXME: construct object with mandatory attributes with example values
+        #model = tvdb_api_v2.models.user_ratings_query_params.UserRatingsQueryParams()
+        pass
 
 
 if __name__ == '__main__':

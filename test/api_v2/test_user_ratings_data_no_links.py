@@ -35,7 +35,9 @@ class TestUserRatingsDataNoLinks(unittest.TestCase):
         """
         Test UserRatingsDataNoLinks
         """
-        model = tvdb_api_v2.models.user_ratings_data_no_links.UserRatingsDataNoLinks()
+        # FIXME: construct object with mandatory attributes with example values
+        #model = tvdb_api_v2.models.user_ratings_data_no_links.UserRatingsDataNoLinks()
+        pass
 
 
 if __name__ == '__main__':

@@ -35,7 +35,9 @@ class TestUserFavorites(unittest.TestCase):
         """
         Test UserFavorites
         """
-        model = tvdb_api_v2.models.user_favorites.UserFavorites()
+        # FIXME: construct object with mandatory attributes with example values
+        #model = tvdb_api_v2.models.user_favorites.UserFavorites()
+        pass
 
 
 if __name__ == '__main__':

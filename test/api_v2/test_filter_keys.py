@@ -35,7 +35,9 @@ class TestFilterKeys(unittest.TestCase):
         """
         Test FilterKeys
         """
-        model = tvdb_api_v2.models.filter_keys.FilterKeys()
+        # FIXME: construct object with mandatory attributes with example values
+        #model = tvdb_api_v2.models.filter_keys.FilterKeys()
+        pass
 
 
 if __name__ == '__main__':

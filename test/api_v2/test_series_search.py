@@ -19,11 +19,11 @@ import unittest
 
 import tvdb_api_v2
 from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.user_ratings_data_no_links_empty_array import UserRatingsDataNoLinksEmptyArray
+from tvdb_api_v2.models.series_search import SeriesSearch
 
 
-class TestUserRatingsDataNoLinksEmptyArray(unittest.TestCase):
-    """ UserRatingsDataNoLinksEmptyArray unit test stubs """
+class TestSeriesSearch(unittest.TestCase):
+    """ SeriesSearch unit test stubs """
 
     def setUp(self):
         pass
@@ -31,12 +31,12 @@ class TestUserRatingsDataNoLinksEmptyArray(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testUserRatingsDataNoLinksEmptyArray(self):
+    def testSeriesSearch(self):
         """
-        Test UserRatingsDataNoLinksEmptyArray
+        Test SeriesSearch
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.user_ratings_data_no_links_empty_array.UserRatingsDataNoLinksEmptyArray()
+        #model = tvdb_api_v2.models.series_search.SeriesSearch()
         pass
 
 

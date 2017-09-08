@@ -35,7 +35,9 @@ class TestSeriesData(unittest.TestCase):
         """
         Test SeriesData
         """
-        model = tvdb_api_v2.models.series_data.SeriesData()
+        # FIXME: construct object with mandatory attributes with example values
+        #model = tvdb_api_v2.models.series_data.SeriesData()
+        pass
 
 
 if __name__ == '__main__':

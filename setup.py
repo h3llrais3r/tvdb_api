@@ -14,7 +14,7 @@
 import sys
 from setuptools import setup, find_packages
 
-NAME = "tvdb_api_v2"
+NAME = "tvdb-api-v2"
 VERSION = "1.0.0"
 # To install the library, run the following
 #

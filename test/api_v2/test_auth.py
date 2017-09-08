@@ -35,7 +35,9 @@ class TestAuth(unittest.TestCase):
         """
         Test Auth
         """
-        model = tvdb_api_v2.models.auth.Auth()
+        # FIXME: construct object with mandatory attributes with example values
+        #model = tvdb_api_v2.models.auth.Auth()
+        pass
 
 
 if __name__ == '__main__':

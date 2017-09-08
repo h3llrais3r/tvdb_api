@@ -100,10 +100,9 @@ class LanguagesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/languages'.replace('{format}', 'json')
         path_params = {}
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -122,7 +121,7 @@ class LanguagesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/languages', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
@@ -203,12 +202,11 @@ class LanguagesApi(object):
 
         collection_formats = {}
 
-        resource_path = '/languages/{id}'.replace('{format}', 'json')
         path_params = {}
         if 'id' in params:
             path_params['id'] = params['id']
 
-        query_params = {}
+        query_params = []
 
         header_params = {}
 
@@ -227,7 +225,7 @@ class LanguagesApi(object):
         # Authentication setting
         auth_settings = ['jwtToken']
 
-        return self.api_client.call_api(resource_path, 'GET',
+        return self.api_client.call_api('/languages/{id}', 'GET',
                                         path_params,
                                         query_params,
                                         header_params,
