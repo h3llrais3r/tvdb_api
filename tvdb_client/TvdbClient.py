@@ -7,6 +7,7 @@ from tvdb_api_v2.apis.authentication_api import AuthenticationApi
 from tvdb_api_v2.apis.episodes_api import EpisodesApi
 from tvdb_api_v2.apis.search_api import SearchApi
 from tvdb_api_v2.apis.series_api import SeriesApi
+from tvdb_api_v2.apis.updates_api import UpdatesApi
 from tvdb_api_v2.configuration import Configuration
 from tvdb_api_v2.models.auth import Auth
 from tvdb_api_v2.models.series_search import SeriesSearch
@@ -60,7 +61,7 @@ class TvdbClient(object):
     def get_series_images_count(self, id):
         """
         :param long id: The id of the series on tvdb
-        :return: The series images count object
+        :return: The series images counts object
         :rtype: tvdb_api_v2.models.series_images_counts.SeriesImagesCounts
         """
         return SeriesApi(self.api_client).series_id_images_get(id)
@@ -69,7 +70,7 @@ class TvdbClient(object):
         """
         :param long id: the id of the series on tvdb
         :param str image_type: the image type (possible types are: 'fanart', 'poster', 'season', 'seasonwide', 'series')
-        :return: The series images count object
+        :return: The series image query results object
         :rtype: tvdb_api_v2.models.series_image_query_results.SeriesImageQueryResults
         """
         return SeriesApi(self.api_client).series_id_images_query_get(id, key_type=image_type)
@@ -96,10 +97,22 @@ class TvdbClient(object):
         # search by imdb_id will always contain 1 result (or throw error otherwise)
         return result.data[0]
 
+    def get_updates(self, from_time):
+        """
+        :param date from_time: the time from which to check for updates
+        :return: the update data object
+        :rtype : tvdb_api_v2.models.update_data.UpdateData
+        """
+        result = UpdatesApi(self.api_client).updated_query_get(from_time)
+        # since the api does not actually throw the error, we are doing it ourselves when no data is returned
+        if not result.data:
+            raise ApiException(status=404, reason='Not Found')
+        return result
+
     def get_episode(self, id):
         """
         :param long id: the id of the episode on tvdb
-        :return: The series images count object
+        :return: The episode object
         :rtype: tvdb_api_v2.models.episode.Episode
         """
         result = EpisodesApi(self.api_client).episodes_id_get(id)
