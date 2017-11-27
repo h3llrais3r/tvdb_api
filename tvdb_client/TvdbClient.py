@@ -28,6 +28,10 @@ class TvdbClient(object):
         # create client
         self.api_client = ApiClient()
 
+    #####################
+    # AuthenticationApi #
+    #####################
+
     def authenticate(self):
         token = AuthenticationApi(self.api_client).login_post(Auth(self.configuration.api_key['ApiKey']))
         self.configuration.api_key['Authorization'] = token.token
@@ -41,6 +45,32 @@ class TvdbClient(object):
     def clear_token(self):
         # use with None otherwise a KeyError is raised
         self.configuration.api_key.pop('Authorization', None)
+
+    #############
+    # SeriesApi #
+    #############
+
+    def search_series_by_name(self, name):
+        """
+        :param str name: The name of the series
+        :return: The series search object
+        :rtype: tvdb_api_v2.models.series_search.SeriesSearch
+        """
+        params = {'name': name, '_preload_content': True}
+        return SearchApi(self.api_client).search_series_get(**params)
+
+    def search_series_by_imdb_id(self, imdb_id):
+        """
+        :param str imdb_id: The id of the series on imdb
+        :return: The series search data object
+        :rtype: tvdb_api_v2.models.series_search_data.SeriesSearchData
+        """
+        params = {'imdb_id': imdb_id, '_preload_content': True}
+        result = SearchApi(self.api_client).search_series_get(**params)
+        # params = {'imdb_id': imdb_id, '_preload_content': False}
+        # result = self._parse_search_series_data(SearchApi(self.api_client).search_series_get(**params))
+        # search by imdb_id will always contain 1 result (or throw error otherwise)
+        return result.data[0]
 
     def get_series(self, id):
         """
@@ -75,39 +105,9 @@ class TvdbClient(object):
         """
         return SeriesApi(self.api_client).series_id_images_query_get(id, key_type=image_type)
 
-    def search_series_by_name(self, name):
-        """
-        :param str name: The name of the series
-        :return: The series search object
-        :rtype: tvdb_api_v2.models.series_search.SeriesSearch
-        """
-        params = {'name': name, '_preload_content': True}
-        return SearchApi(self.api_client).search_series_get(**params)
-
-    def search_series_by_imdb_id(self, imdb_id):
-        """
-        :param str imdb_id: The id of the series on imdb
-        :return: The series search data object
-        :rtype: tvdb_api_v2.models.series_search_data.SeriesSearchData
-        """
-        params = {'imdb_id': imdb_id, '_preload_content': True}
-        result = SearchApi(self.api_client).search_series_get(**params)
-        # params = {'imdb_id': imdb_id, '_preload_content': False}
-        # result = self._parse_search_series_data(SearchApi(self.api_client).search_series_get(**params))
-        # search by imdb_id will always contain 1 result (or throw error otherwise)
-        return result.data[0]
-
-    def get_updates(self, from_time):
-        """
-        :param date from_time: the time from which to check for updates
-        :return: the update data object
-        :rtype : tvdb_api_v2.models.update_data.UpdateData
-        """
-        result = UpdatesApi(self.api_client).updated_query_get(from_time)
-        # since the api does not actually throw the error, we are doing it ourselves when no data is returned
-        if not result.data:
-            raise ApiException(status=404, reason='Not Found')
-        return result
+    ###############
+    # EpisodesApi #
+    ###############
 
     def get_episode(self, id):
         """
@@ -121,6 +121,22 @@ class TvdbClient(object):
         if not result.data.id:
             raise ApiException(status=404, reason='Not Found')
         return result.data
+
+    ##############
+    # UpdatesApi #
+    ##############
+
+    def get_updates(self, from_time):
+        """
+        :param date from_time: the time from which to check for updates
+        :return: the update data object
+        :rtype : tvdb_api_v2.models.update_data.UpdateData
+        """
+        result = UpdatesApi(self.api_client).updated_query_get(from_time)
+        # since the api does not actually throw the error, we are doing it ourselves when no data is returned
+        if not result.data:
+            raise ApiException(status=404, reason='Not Found')
+        return result
 
     ####################################################################################################################
 
