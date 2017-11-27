@@ -42,15 +42,23 @@ class TvdbClient(object):
     def get_series(self, id):
         """
         :param long id: The id of the series on tvdb
-        :return: The series data
+        :return: The series data object
         :rtype: tvdb_api_v2.models.series_data.SeriesData
         """
         return SeriesApi(self.api_client).series_id_get(id)
 
+    def get_series_episodes(self, id):
+        """
+        :param long id: The id of the series on tvdb
+        :return: The series episodes object
+        :rtype: tvdb_api_v2.models.series_episodes.SeriesEpisodes
+        """
+        return SeriesApi(self.api_client).series_id_episodes_get(id)
+
     def search_series_by_name(self, name):
         """
         :param str name: The name of the series
-        :return: The series search result
+        :return: The series search object
         :rtype: tvdb_api_v2.models.series_search.SeriesSearch
         """
         params = {'name': name, '_preload_content': True}
@@ -59,7 +67,7 @@ class TvdbClient(object):
     def search_series_by_imdb_id(self, imdb_id):
         """
         :param str imdb_id: The id of the series on imdb
-        :return: The single series search result
+        :return: The series search data object
         :rtype: tvdb_api_v2.models.series_search_data.SeriesSearchData
         """
         params = {'imdb_id': imdb_id, '_preload_content': True}
