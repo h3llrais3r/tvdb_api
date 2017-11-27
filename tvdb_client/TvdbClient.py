@@ -5,6 +5,7 @@ from six import iteritems
 from tvdb_api_v2.api_client import ApiClient
 from tvdb_api_v2.apis.authentication_api import AuthenticationApi
 from tvdb_api_v2.apis.search_api import SearchApi
+from tvdb_api_v2.apis.series_api import SeriesApi
 from tvdb_api_v2.configuration import Configuration
 from tvdb_api_v2.models.auth import Auth
 from tvdb_api_v2.models.series_search import SeriesSearch
@@ -38,10 +39,19 @@ class TvdbClient(object):
         # use with None otherwise a KeyError is raised
         self.configuration.api_key.pop('Authorization', None)
 
+    def get_series(self, id):
+        """
+        :param long id: The id of the series on tvdb
+        :return: The series data
+        :rtype: tvdb_api_v2.models.series_data.SeriesData
+        """
+        return SeriesApi(self.api_client).series_id_get(id)
+
     def search_series_by_name(self, name):
         """
         :param str name: The name of the series
-        :return: SeriesSearch with the matching results
+        :return: The series search result
+        :rtype: tvdb_api_v2.models.series_search.SeriesSearch
         """
         params = {'name': name, '_preload_content': True}
         return SearchApi(self.api_client).search_series_get(**params)
@@ -49,7 +59,8 @@ class TvdbClient(object):
     def search_series_by_imdb_id(self, imdb_id):
         """
         :param str imdb_id: The id of the series on imdb
-        :return: SeriesSearchData the matching result
+        :return: The single series search result
+        :rtype: tvdb_api_v2.models.series_search_data.SeriesSearchData
         """
         params = {'imdb_id': imdb_id, '_preload_content': True}
         result = SearchApi(self.api_client).search_series_get(**params)
