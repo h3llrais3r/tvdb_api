@@ -38,15 +38,15 @@ class TvdbClient(object):
         # use with None otherwise a KeyError is raised
         self.configuration.api_key.pop('Authorization', None)
 
-    def search_series_by_name(self, series_name):
+    def search_series_by_name(self, name):
         """
         :param str name: The name of the series
         :return: SeriesSearch with the matching results
         """
-        params = {'name': series_name, '_preload_content': True}
+        params = {'name': name, '_preload_content': True}
         return SearchApi(self.api_client).search_series_get(**params)
 
-    def search_series_by_id(self, imdb_id):
+    def search_series_by_imdb_id(self, imdb_id):
         """
         :param str imdb_id: The id of the series on imdb
         :return: SeriesSearchData the matching result
@@ -55,7 +55,7 @@ class TvdbClient(object):
         result = SearchApi(self.api_client).search_series_get(**params)
         # params = {'imdb_id': imdb_id, '_preload_content': False}
         # result = self._parse_search_series_data(SearchApi(self.api_client).search_series_get(**params))
-        # search by id will always contains 1 result (or throw error otherwise)
+        # search by imdb_id will always contains 1 result (or throw error otherwise)
         return result.data[0]
 
     ####################################################################################################################

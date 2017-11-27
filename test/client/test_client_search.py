@@ -40,25 +40,25 @@ class TestClientSearch(unittest.TestCase):
         self.assertTrue(e.exception.status == 404)
         self.assertTrue(e.exception.reason == 'Not Found')
 
-    def test_search_series_by_id(self):
-        response = self.client.search_series_by_id('tt4189022')
+    def test_search_series_by_imdb_id(self):
+        response = self.client.search_series_by_imdb_id('tt4189022')
         # asserts
         self.assertIsNotNone(response)
         self.assertIsInstance(response, SeriesSearchData)
         self.assertTrue(response.id == 296295)
 
-    def test_search_series_by_id_401(self):
+    def test_search_series_by_imdb_id_401(self):
         self.client.clear_token()
         # asserts
         with self.assertRaises(ApiException) as e:
-            self.client.search_series_by_id('tt4189022')
+            self.client.search_series_by_imdb_id('tt4189022')
         self.assertTrue(e.exception.status == 401)
         self.assertTrue(e.exception.reason == 'Unauthorized')
 
-    def test_search_series_by_id_404(self):
+    def test_search_series_by_imdb_id_404(self):
         # asserts
         with self.assertRaises(ApiException) as e:
-            self.client.search_series_by_id('tt0000000')
+            self.client.search_series_by_imdb_id('tt0000000')
         self.assertTrue(e.exception.status == 404)
         self.assertTrue(e.exception.reason == 'Not Found')
 
