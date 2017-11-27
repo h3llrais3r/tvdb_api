@@ -47,7 +47,7 @@ class TvdbClient(object):
         self.configuration.api_key.pop('Authorization', None)
 
     #############
-    # SeriesApi #
+    # SearchApi #
     #############
 
     def search_series_by_name(self, name):
@@ -71,6 +71,10 @@ class TvdbClient(object):
         # result = self._parse_search_series_data(SearchApi(self.api_client).search_series_get(**params))
         # search by imdb_id will always contain 1 result (or throw error otherwise)
         return result.data[0]
+
+    #############
+    # SeriesApi #
+    #############
 
     def get_series(self, id):
         """
