@@ -63,6 +63,15 @@ class TvdbClient(object):
         """
         return SeriesApi(self.api_client).series_id_images_get(id)
 
+    def get_series_images(self, id, image_type='poster'):
+        """
+        :param long id: the id of the series on tvdb
+        :param str image_type: the image type (possible types are: 'fanart', 'poster', 'season', 'seasonwide', 'series')
+        :return: The series images count object
+        :rtype: tvdb_api_v2.models.series_image_query_results.SeriesImageQueryResults
+        """
+        return SeriesApi(self.api_client).series_id_images_query_get(id, key_type=image_type)
+
     def search_series_by_name(self, name):
         """
         :param str name: The name of the series
