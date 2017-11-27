@@ -4,12 +4,14 @@ from six import iteritems
 
 from tvdb_api_v2.api_client import ApiClient
 from tvdb_api_v2.apis.authentication_api import AuthenticationApi
+from tvdb_api_v2.apis.episodes_api import EpisodesApi
 from tvdb_api_v2.apis.search_api import SearchApi
 from tvdb_api_v2.apis.series_api import SeriesApi
 from tvdb_api_v2.configuration import Configuration
 from tvdb_api_v2.models.auth import Auth
 from tvdb_api_v2.models.series_search import SeriesSearch
 from tvdb_api_v2.models.series_search_data import SeriesSearchData
+from tvdb_api_v2.rest import ApiException
 
 API_KEY = "9710D6F39C4A2457"
 HOST = "https://api.thetvdb.com"
@@ -91,8 +93,21 @@ class TvdbClient(object):
         result = SearchApi(self.api_client).search_series_get(**params)
         # params = {'imdb_id': imdb_id, '_preload_content': False}
         # result = self._parse_search_series_data(SearchApi(self.api_client).search_series_get(**params))
-        # search by imdb_id will always contains 1 result (or throw error otherwise)
+        # search by imdb_id will always contain 1 result (or throw error otherwise)
         return result.data[0]
+
+    def get_episode(self, id):
+        """
+        :param long id: the id of the episode on tvdb
+        :return: The series images count object
+        :rtype: tvdb_api_v2.models.episode.Episode
+        """
+        result = EpisodesApi(self.api_client).episodes_id_get(id)
+        # get by id will always contain data (or throw error otherwise)
+        # since the api does not actually throw the error, we are doing it ourselves when no id is returned
+        if not result.data.id:
+            raise ApiException(status=404, reason='Not Found')
+        return result.data
 
     ####################################################################################################################
 
