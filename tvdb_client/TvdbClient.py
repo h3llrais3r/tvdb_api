@@ -57,8 +57,7 @@ class TvdbClient(object):
         :return: The series search object
         :rtype: tvdb_api_v2.models.series_search.SeriesSearch
         """
-        params = {'name': name, '_preload_content': True}
-        return SearchApi(self.api_client).search_series_get(**params)
+        return SearchApi(self.api_client).search_series_get(name=name)
 
     def search_series_by_imdb_id(self, imdb_id):
         """
@@ -67,8 +66,7 @@ class TvdbClient(object):
         :return: The series search data object
         :rtype: tvdb_api_v2.models.series_search_data.SeriesSearchData
         """
-        params = {'imdb_id': imdb_id, '_preload_content': True}
-        result = SearchApi(self.api_client).search_series_get(**params)
+        result = SearchApi(self.api_client).search_series_get(imdb_id=imdb_id)
         # params = {'imdb_id': imdb_id, '_preload_content': False}
         # result = self._parse_search_series_data(SearchApi(self.api_client).search_series_get(**params))
         # search by imdb_id will always contain 1 result (or throw error otherwise)
@@ -153,7 +151,7 @@ class TvdbClient(object):
 
     ####################################################################################################################
 
-    # Use this if we want to parse the response ourselves -> set 'preload_content' = False in params
+    # Use this if we want to parse the response ourselves -> set '_preload_content' = False in params
     def _parse_search_series_data(self, response, best_result=False):
         data = json.loads(response.data)
         # json object is a dict with a data key which contains a list of SeriesSearchData
