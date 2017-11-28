@@ -52,7 +52,8 @@ class TvdbClient(object):
 
     def search_series_by_name(self, name):
         """
-        :param str name: The name of the series
+        :param name: The name of the series
+        :type name: str
         :return: The series search object
         :rtype: tvdb_api_v2.models.series_search.SeriesSearch
         """
@@ -61,7 +62,8 @@ class TvdbClient(object):
 
     def search_series_by_imdb_id(self, imdb_id):
         """
-        :param str imdb_id: The id of the series on imdb
+        :param imdb_id: The id of the series on imdb
+        :type imdb_id: str
         :return: The series search data object
         :rtype: tvdb_api_v2.models.series_search_data.SeriesSearchData
         """
@@ -78,7 +80,8 @@ class TvdbClient(object):
 
     def get_series(self, id):
         """
-        :param long id: The id of the series on tvdb
+        :param id: The id of the series on tvdb
+        :type id: long
         :return: The series data object
         :rtype: tvdb_api_v2.models.series_data.SeriesData
         """
@@ -86,7 +89,8 @@ class TvdbClient(object):
 
     def get_series_episodes(self, id):
         """
-        :param long id: The id of the series on tvdb
+        :param id: The id of the series on tvdb
+        :type id: long
         :return: The series episodes object
         :rtype: tvdb_api_v2.models.series_episodes.SeriesEpisodes
         """
@@ -94,7 +98,8 @@ class TvdbClient(object):
 
     def get_series_images_count(self, id):
         """
-        :param long id: The id of the series on tvdb
+        :param id: The id of the series on tvdb
+        :type id: long
         :return: The series images counts object
         :rtype: tvdb_api_v2.models.series_images_counts.SeriesImagesCounts
         """
@@ -102,8 +107,10 @@ class TvdbClient(object):
 
     def get_series_images(self, id, image_type='poster'):
         """
-        :param long id: the id of the series on tvdb
-        :param str image_type: the image type (possible types are: 'fanart', 'poster', 'season', 'seasonwide', 'series')
+        :param id: the id of the series on tvdb
+        :type id: long
+        :param image_type: the image type (possible types are: 'fanart', 'poster', 'season', 'seasonwide', 'series')
+        :type image_type: str
         :return: The series image query results object
         :rtype: tvdb_api_v2.models.series_image_query_results.SeriesImageQueryResults
         """
@@ -115,7 +122,8 @@ class TvdbClient(object):
 
     def get_episode(self, id):
         """
-        :param long id: the id of the episode on tvdb
+        :param id: the id of the episode on tvdb
+        :type id: long
         :return: The episode object
         :rtype: tvdb_api_v2.models.episode.Episode
         """
@@ -132,7 +140,8 @@ class TvdbClient(object):
 
     def get_updates(self, from_time):
         """
-        :param date from_time: the time from which to check for updates
+        :param from_time: the time (epoch time) from which to check for updates
+        :type from_time: long
         :return: the update data object
         :rtype : tvdb_api_v2.models.update_data.UpdateData
         """
