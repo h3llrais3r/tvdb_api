@@ -19,7 +19,6 @@ class TestClientAuth(unittest.TestCase):
     def test_authenticate(self):
         # asserts
         self.assertIsNotNone(self.token)
-        self.assertIsNotNone(self.token.token)
 
     def test_authenticate_401(self):
         # clear api key

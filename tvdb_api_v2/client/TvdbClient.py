@@ -33,16 +33,24 @@ class TvdbClient(object):
     #####################
 
     def authenticate(self):
-        """Authenticate and return the authorization token."""
+        """Authenticate and return the authorization token.
+
+        :return: The authentication token.
+        :rtype: str
+        """
         token = AuthenticationApi(self.api_client).login_post(Auth(self.configuration.api_key['ApiKey']))
         self.configuration.api_key['Authorization'] = token.token
-        return token
+        return token.token
 
     def refresh_token(self):
-        """Refresh the authorization token."""
+        """Refresh the authorization token.
+
+        :return: The authentication token.
+        :rtype: str
+        """
         token = AuthenticationApi(self.api_client).refresh_token_get()
         self.configuration.api_key['Authorization'] = token.token
-        return token
+        return token.token
 
     def clear_token(self):
         """Clear the authorization token."""
