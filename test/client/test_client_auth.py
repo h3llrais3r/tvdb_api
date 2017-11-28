@@ -10,16 +10,14 @@ class TestClientAuth(unittest.TestCase):
 
     def setUp(self):
         self.client = TvdbClient()
-        self.token = self.client.authenticate()
+        self.client.authenticate()
 
     def tearDown(self):
         self.client.clear_token()
-        self.token = None
 
     def test_authenticate(self):
         # asserts
-        self.assertIsNotNone(self.token)
-        self.assertIsNotNone(self.token.token)
+        self.assertIsNotNone(self.client.configuration.api_key['Authorization'])
 
     def test_authenticate_401(self):
         # clear api key
@@ -31,13 +29,15 @@ class TestClientAuth(unittest.TestCase):
         self.assertTrue(e.exception.reason == 'Unauthorized')
 
     def test_refresh_token(self):
+        # get existing token
+        token = self.client.configuration.api_key['Authorization']
         # sleep before refreshing the token to be sure we get a new one
         time.sleep(2)
-        refresh_token = self.client.refresh_token()
+        self.client.refresh_token()
+        new_token = self.client.configuration.api_key['Authorization']
         # asserts
-        self.assertIsNotNone(refresh_token)
-        self.assertIsNotNone(refresh_token.token)
-        self.assertNotEquals(self.token.token, refresh_token.token)
+        self.assertIsNotNone(new_token)
+        self.assertNotEquals(token, new_token)
 
     def test_refresh_token_401(self):
         self.client.clear_token()
