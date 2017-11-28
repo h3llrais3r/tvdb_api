@@ -33,16 +33,19 @@ class TvdbClient(object):
     #####################
 
     def authenticate(self):
+        """Authenticate and return the authorization token."""
         token = AuthenticationApi(self.api_client).login_post(Auth(self.configuration.api_key['ApiKey']))
         self.configuration.api_key['Authorization'] = token.token
         return token
 
     def refresh_token(self):
+        """Refresh the authorization token."""
         token = AuthenticationApi(self.api_client).refresh_token_get()
         self.configuration.api_key['Authorization'] = token.token
         return token
 
     def clear_token(self):
+        """Clear the authorization token."""
         # use with None otherwise a KeyError is raised
         self.configuration.api_key.pop('Authorization', None)
 
@@ -51,7 +54,8 @@ class TvdbClient(object):
     #############
 
     def search_series_by_name(self, name):
-        """
+        """Search for a series based on it's name.
+
         :param name: The name of the series
         :type name: str
         :return: The series search object
@@ -60,7 +64,8 @@ class TvdbClient(object):
         return SearchApi(self.api_client).search_series_get(name=name)
 
     def search_series_by_imdb_id(self, imdb_id):
-        """
+        """Search for a series based on it's imdb id.
+
         :param imdb_id: The id of the series on imdb
         :type imdb_id: str
         :return: The series search data object
@@ -77,7 +82,8 @@ class TvdbClient(object):
     #############
 
     def get_series(self, id):
-        """
+        """Get the details of a series.
+
         :param id: The id of the series on tvdb
         :type id: long
         :return: The series data object
@@ -86,7 +92,8 @@ class TvdbClient(object):
         return SeriesApi(self.api_client).series_id_get(id)
 
     def get_series_episodes(self, id):
-        """
+        """Get all the episodes of a series.
+
         :param id: The id of the series on tvdb
         :type id: long
         :return: The series episodes object
@@ -95,7 +102,8 @@ class TvdbClient(object):
         return SeriesApi(self.api_client).series_id_episodes_get(id)
 
     def get_series_images_count(self, id):
-        """
+        """Get the images count (for all image_type values) of a series.
+
         :param id: The id of the series on tvdb
         :type id: long
         :return: The series images counts object
@@ -104,7 +112,8 @@ class TvdbClient(object):
         return SeriesApi(self.api_client).series_id_images_get(id)
 
     def get_series_images(self, id, image_type='poster'):
-        """
+        """Get all the images (of the specified image type) of a series.
+
         :param id: the id of the series on tvdb
         :type id: long
         :param image_type: the image type (possible types are: 'fanart', 'poster', 'season', 'seasonwide', 'series')
@@ -119,7 +128,8 @@ class TvdbClient(object):
     ###############
 
     def get_episode(self, id):
-        """
+        """Get all the details of an episode.
+
         :param id: the id of the episode on tvdb
         :type id: long
         :return: The episode object
@@ -137,11 +147,12 @@ class TvdbClient(object):
     ##############
 
     def get_updates(self, from_time):
-        """
+        """Get series updates from a certain point in time (epoch time).
+
         :param from_time: the time (epoch time) from which to check for updates
-        :type from_time: long
+        :type from_time: str
         :return: the update data object
-        :rtype : tvdb_api_v2.models.update_data.UpdateData
+        :rtype: tvdb_api_v2.models.update_data.UpdateData
         """
         result = UpdatesApi(self.api_client).updated_query_get(from_time)
         # since the api does not actually throw the error, we are doing it ourselves when no data is returned
