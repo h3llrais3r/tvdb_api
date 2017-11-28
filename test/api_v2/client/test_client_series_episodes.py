@@ -2,7 +2,7 @@ import unittest
 
 from tvdb_api_v2.models.series_episodes import SeriesEpisodes
 from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.tvdb_client import TvdbClient
+from tvdb_api_v2.client import TvdbClient
 
 
 class TestClientSeriesEpisodes(unittest.TestCase):
