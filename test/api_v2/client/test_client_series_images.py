@@ -5,7 +5,7 @@ from tvdb_api_v2.models.series_image_query_results import SeriesImageQueryResult
 from tvdb_api_v2.models.series_images_count import SeriesImagesCount
 from tvdb_api_v2.models.series_images_counts import SeriesImagesCounts
 from tvdb_api_v2.rest import ApiException
-from tvdb_client import TvdbClient
+from tvdb_api_v2.tvdb_client import TvdbClient
 
 
 class TestClientSeriesImages(unittest.TestCase):

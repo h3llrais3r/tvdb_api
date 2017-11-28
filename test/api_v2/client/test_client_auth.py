@@ -2,7 +2,7 @@ import time
 import unittest
 
 from tvdb_api_v2.rest import ApiException
-from tvdb_client import TvdbClient
+from tvdb_api_v2.tvdb_client import TvdbClient
 
 
 class TestClientAuth(unittest.TestCase):
