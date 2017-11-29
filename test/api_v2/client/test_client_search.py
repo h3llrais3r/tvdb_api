@@ -25,6 +25,13 @@ class TestClientSearch(unittest.TestCase):
         self.assertTrue(len(response.data) == 1)
         self.assertTrue(response.data[0].id == 296295)
 
+    def test_search_series_by_name_multiple_results(self):
+        response = self.client.search_series_by_name('the americans')
+        # asserts
+        self.assertIsNotNone(response)
+        self.assertIsInstance(response, SeriesSearch)
+        self.assertTrue(len(response.data) > 1)
+
     def test_search_series_by_name_401(self):
         self.client.clear_token()
         # asserts
