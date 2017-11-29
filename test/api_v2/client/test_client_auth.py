@@ -35,8 +35,7 @@ class TestClientAuth(unittest.TestCase):
         refresh_token = self.client.refresh_token()
         # asserts
         self.assertIsNotNone(refresh_token)
-        self.assertIsNotNone(refresh_token.token)
-        self.assertNotEquals(self.token.token, refresh_token.token)
+        self.assertNotEquals(self.token, refresh_token)
 
     def test_refresh_token_401(self):
         self.client.clear_token()
