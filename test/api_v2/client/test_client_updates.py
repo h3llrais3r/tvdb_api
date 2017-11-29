@@ -22,7 +22,7 @@ class TestClientEpisodes(unittest.TestCase):
         day = 24 * 60 * 60
         yesterday = date.today() - timedelta(days=1)
         yesterday_epoch = (yesterday.toordinal() - date(1970, 1, 1).toordinal()) * day
-        response = self.client.get_updates(yesterday_epoch)
+        response = self.client.get_updates(str(yesterday_epoch))
         # asserts
         self.assertIsNotNone(response)
         self.assertIsInstance(response, UpdateData)
@@ -35,7 +35,7 @@ class TestClientEpisodes(unittest.TestCase):
         today_epoch = (date.today().toordinal() - date(1970, 1, 1).toordinal()) * day
         # asserts
         with self.assertRaises(ApiException) as e:
-            self.client.get_updates(today_epoch)
+            self.client.get_updates(str(today_epoch))
         self.assertTrue(e.exception.status == 401)
         self.assertTrue(e.exception.reason == 'Unauthorized')
 
@@ -45,7 +45,7 @@ class TestClientEpisodes(unittest.TestCase):
         tomorrow = date.today() + timedelta(days=1)
         tomorrow_epoch = (tomorrow.toordinal() - date(1970, 1, 1).toordinal()) * day
         with self.assertRaises(ApiException) as e:
-            self.client.get_updates(tomorrow_epoch)
+            self.client.get_updates(str(tomorrow_epoch))
         self.assertTrue(e.exception.status == 404)
         self.assertTrue(e.exception.reason == 'Not Found')
 

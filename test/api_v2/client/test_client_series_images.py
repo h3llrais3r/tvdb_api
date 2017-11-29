@@ -26,7 +26,10 @@ class TestClientSeriesImages(unittest.TestCase):
         self.assertIsInstance(response, SeriesImagesCounts)
         self.assertIsNotNone(response.data)
         self.assertIsInstance(response.data, SeriesImagesCount)
+        self.assertTrue(response.data.fanart > 0)
         self.assertTrue(response.data.poster > 0)
+        self.assertTrue(response.data.season > 0)
+        self.assertTrue(response.data.series > 0)
 
     def test_get_series_images_count_401(self):
         self.client.clear_token()

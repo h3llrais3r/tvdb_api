@@ -22,6 +22,9 @@ class TestClientSeriesEpisodes(unittest.TestCase):
         self.assertIsNotNone(response)
         self.assertIsInstance(response, SeriesEpisodes)
         self.assertTrue(len(response.data) > 0)
+        self.assertIsNotNone(response.links)
+        self.assertIsNotNone(response.links.first)
+        self.assertIsNotNone(response.links.last)
 
     def test_get_series_episodes_401(self):
         self.client.clear_token()

@@ -24,6 +24,15 @@ class TestClientSeries(unittest.TestCase):
         self.assertTrue(response.data.imdb_id == 'tt4189022')
         self.assertTrue(response.data.series_name == 'Ash vs Evil Dead')
 
+    def test_get_series_with_errors(self):
+        response = self.client.get_series(296295, language='nl')
+        # asserts
+        self.assertIsNotNone(response)
+        self.assertIsInstance(response, SeriesData)
+        self.assertTrue(response.data.imdb_id == 'tt4189022')
+        self.assertIsNotNone(response.errors)
+        self.assertIsNotNone(response.errors.invalid_language)
+
     def test_get_series_401(self):
         self.client.clear_token()
         # asserts
