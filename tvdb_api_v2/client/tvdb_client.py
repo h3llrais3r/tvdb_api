@@ -10,6 +10,7 @@ from tvdb_api_v2.rest import ApiException
 
 API_KEY = "9710D6F39C4A2457"
 HOST = "https://api.thetvdb.com"
+BASE_IMAGE_URL = "https://www.thetvdb.com"
 
 
 class TvdbClient(object):
@@ -205,3 +206,22 @@ class TvdbClient(object):
         if not result.data:
             raise ApiException(status=404, reason='Not Found')
         return result
+
+
+#####################
+# Utility functions #
+#####################
+
+def get_artwork_url(artwork_file_name):
+    """Get the actual artwork url for download.
+
+    :param artwork_file_name: The artwork file name.
+        This can be taken from:
+            - The 'file_name' property in a SeriesImageQueryResult object from the get_series_images(...)
+            - The 'thumbnail' property in a SeriesImageQueryResult object from the get_series_images(...)
+            - the 'banner' property in a Series object from the SeriesData object from the get_series(...)
+    :type artwork_file_name: str
+    :return: The full artwork url.
+    :rtype: str
+    """
+    return '{base_url}/banners/{artwork_file_name}'.format(base_url=BASE_IMAGE_URL, artwork_file_name=artwork_file_name)
