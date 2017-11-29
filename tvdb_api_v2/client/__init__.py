@@ -1,1 +1,1 @@
-from .TvdbClient import TvdbClient
+from .tvdb_client import TvdbClient
