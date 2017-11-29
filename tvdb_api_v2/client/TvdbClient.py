@@ -1,7 +1,3 @@
-import json
-
-from six import iteritems
-
 from tvdb_api_v2.api_client import ApiClient
 from tvdb_api_v2.apis.authentication_api import AuthenticationApi
 from tvdb_api_v2.apis.episodes_api import EpisodesApi
@@ -10,8 +6,6 @@ from tvdb_api_v2.apis.series_api import SeriesApi
 from tvdb_api_v2.apis.updates_api import UpdatesApi
 from tvdb_api_v2.configuration import Configuration
 from tvdb_api_v2.models.auth import Auth
-from tvdb_api_v2.models.series_search import SeriesSearch
-from tvdb_api_v2.models.series_search_data import SeriesSearchData
 from tvdb_api_v2.rest import ApiException
 
 API_KEY = "9710D6F39C4A2457"
@@ -84,8 +78,6 @@ class TvdbClient(object):
         :rtype: tvdb_api_v2.models.series_search_data.SeriesSearchData
         """
         result = SearchApi(self.api_client).search_series_get(imdb_id=imdb_id, accept_language=language)
-        # params = {'imdb_id': imdb_id, '_preload_content': False}
-        # result = self._parse_search_series_data(SearchApi(self.api_client).search_series_get(**params))
         # search by imdb_id will always contain 1 result (or throw error otherwise)
         return result.data[0]
 
@@ -179,25 +171,3 @@ class TvdbClient(object):
         if not result.data:
             raise ApiException(status=404, reason='Not Found')
         return result
-
-    ####################################################################################################################
-
-    # Use this if we want to parse the response ourselves -> set '_preload_content' = False in params
-    def _parse_search_series_data(self, response, best_result=False):
-        data = json.loads(response.data)
-        # json object is a dict with a data key which contains a list of SeriesSearchData
-        # result is an object of type SeriesSearch
-        search_results = data['data'] if 'data' in data.keys() else None
-        if best_result:
-            return SeriesSearch([self._deserialize_model(search_results[0], SeriesSearchData())])
-        else:
-            return SeriesSearch([self._deserialize_model(result, SeriesSearchData()) for result in search_results])
-
-    def _deserialize_model(self, data, instance):
-        if not instance.swagger_types:
-            return data
-        for attr, attr_type in iteritems(instance.swagger_types):
-            if data is not None and instance.attribute_map[attr] in data and isinstance(data, (list, dict)):
-                value = data[instance.attribute_map[attr]]
-                setattr(instance, attr, value)
-        return instance
