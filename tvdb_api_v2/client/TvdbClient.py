@@ -97,15 +97,17 @@ class TvdbClient(object):
         """
         return SeriesApi(self.api_client).series_id_get(id, accept_language=language)
 
-    def get_series_episodes(self, id):
+    def get_series_episodes(self, id, page=1):
         """Get all the episodes of a series.
 
         :param id: The id of the series on tvdb
         :type id: long
+        :param page: The page of the results to fetch (100 results per page)
+        :type page: str
         :return: The series episodes object
         :rtype: tvdb_api_v2.models.series_episodes.SeriesEpisodes
         """
-        return SeriesApi(self.api_client).series_id_episodes_get(id)
+        return SeriesApi(self.api_client).series_id_episodes_get(id, page=page)
 
     def get_series_images_count(self, id, language='en'):
         """Get the images count (for all image_type values) of a series.
