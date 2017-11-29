@@ -61,25 +61,29 @@ class TvdbClient(object):
     # SearchApi #
     #############
 
-    def search_series_by_name(self, name):
+    def search_series_by_name(self, name, language='en'):
         """Search for a series based on it's name.
 
         :param name: The name of the series
         :type name: str
+        :param language: The desired language in which to return the result
+        :type language: str
         :return: The series search object
         :rtype: tvdb_api_v2.models.series_search.SeriesSearch
         """
-        return SearchApi(self.api_client).search_series_get(name=name)
+        return SearchApi(self.api_client).search_series_get(name=name, accept_language=language)
 
-    def search_series_by_imdb_id(self, imdb_id):
+    def search_series_by_imdb_id(self, imdb_id, language='en'):
         """Search for a series based on it's imdb id.
 
         :param imdb_id: The id of the series on imdb
         :type imdb_id: str
+        :param language: The desired language in which to return the result
+        :type language: str
         :return: The series search data object
         :rtype: tvdb_api_v2.models.series_search_data.SeriesSearchData
         """
-        result = SearchApi(self.api_client).search_series_get(imdb_id=imdb_id)
+        result = SearchApi(self.api_client).search_series_get(imdb_id=imdb_id, accept_language=language)
         # params = {'imdb_id': imdb_id, '_preload_content': False}
         # result = self._parse_search_series_data(SearchApi(self.api_client).search_series_get(**params))
         # search by imdb_id will always contain 1 result (or throw error otherwise)
@@ -89,15 +93,17 @@ class TvdbClient(object):
     # SeriesApi #
     #############
 
-    def get_series(self, id):
+    def get_series(self, id, language='en'):
         """Get the details of a series.
 
         :param id: The id of the series on tvdb
         :type id: long
+        :param language: The desired language in which to return the result
+        :type language: str
         :return: The series data object
         :rtype: tvdb_api_v2.models.series_data.SeriesData
         """
-        return SeriesApi(self.api_client).series_id_get(id)
+        return SeriesApi(self.api_client).series_id_get(id, accept_language=language)
 
     def get_series_episodes(self, id):
         """Get all the episodes of a series.
@@ -109,7 +115,7 @@ class TvdbClient(object):
         """
         return SeriesApi(self.api_client).series_id_episodes_get(id)
 
-    def get_series_images_count(self, id):
+    def get_series_images_count(self, id, language='en'):
         """Get the images count (for all image_type values) of a series.
 
         :param id: The id of the series on tvdb
@@ -117,33 +123,37 @@ class TvdbClient(object):
         :return: The series images counts object
         :rtype: tvdb_api_v2.models.series_images_counts.SeriesImagesCounts
         """
-        return SeriesApi(self.api_client).series_id_images_get(id)
+        return SeriesApi(self.api_client).series_id_images_get(id, accept_language=language)
 
-    def get_series_images(self, id, image_type='poster'):
+    def get_series_images(self, id, image_type='poster', language='en'):
         """Get all the images (of the specified image type) of a series.
 
         :param id: the id of the series on tvdb
         :type id: long
         :param image_type: the image type (possible types are: 'fanart', 'poster', 'season', 'seasonwide', 'series')
         :type image_type: str
+        :param language: the desired language in which to return the result
+        :type language: str
         :return: The series image query results object
         :rtype: tvdb_api_v2.models.series_image_query_results.SeriesImageQueryResults
         """
-        return SeriesApi(self.api_client).series_id_images_query_get(id, key_type=image_type)
+        return SeriesApi(self.api_client).series_id_images_query_get(id, key_type=image_type, accept_language=language)
 
     ###############
     # EpisodesApi #
     ###############
 
-    def get_episode(self, id):
+    def get_episode(self, id, language='en'):
         """Get all the details of an episode.
 
         :param id: the id of the episode on tvdb
         :type id: long
+        :param language: the desired language in which to return the result
+        :type language: str
         :return: The episode object
         :rtype: tvdb_api_v2.models.episode.Episode
         """
-        result = EpisodesApi(self.api_client).episodes_id_get(id)
+        result = EpisodesApi(self.api_client).episodes_id_get(id, accept_language=language)
         # get by id will always contain data (or throw error otherwise)
         # since the api does not actually throw the error, we are doing it ourselves when no id is returned
         if not result.data.id:
@@ -154,15 +164,17 @@ class TvdbClient(object):
     # UpdatesApi #
     ##############
 
-    def get_updates(self, from_time):
+    def get_updates(self, from_time, language='en'):
         """Get series updates from a certain point in time (epoch time).
 
         :param from_time: the time (epoch time) from which to check for updates
         :type from_time: str
+        :param language: the desired language in which to return the result
+        :type language: str
         :return: the update data object
         :rtype: tvdb_api_v2.models.update_data.UpdateData
         """
-        result = UpdatesApi(self.api_client).updated_query_get(from_time)
+        result = UpdatesApi(self.api_client).updated_query_get(from_time, accept_language=language)
         # since the api does not actually throw the error, we are doing it ourselves when no data is returned
         if not result.data:
             raise ApiException(status=404, reason='Not Found')
