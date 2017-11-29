@@ -14,12 +14,12 @@ HOST = "https://api.thetvdb.com"
 
 class TvdbClient(object):
     def __init__(self, api_key=API_KEY):
-        # setup configuration
+        # Setup configuration
         self.configuration = Configuration()
         self.configuration.host = HOST
         self.configuration.api_key['ApiKey'] = api_key
         self.configuration.api_key_prefix['Authorization'] = 'Bearer'
-        # create client
+        # Create client
         self.api_client = ApiClient()
 
     #####################
@@ -48,7 +48,7 @@ class TvdbClient(object):
 
     def clear_token(self):
         """Clear the authorization token."""
-        # use with None otherwise a KeyError is raised
+        # Use with None otherwise a KeyError is raised
         self.configuration.api_key.pop('Authorization', None)
 
     #############
@@ -78,7 +78,7 @@ class TvdbClient(object):
         :rtype: tvdb_api_v2.models.series_search_data.SeriesSearchData
         """
         result = SearchApi(self.api_client).search_series_get(imdb_id=imdb_id, accept_language=language)
-        # search by imdb_id will always contain 1 result (or throw error otherwise)
+        # Return the first result (there should be only 1)
         return result.data[0]
 
     #############
@@ -146,8 +146,8 @@ class TvdbClient(object):
         :rtype: tvdb_api_v2.models.episode.Episode
         """
         result = EpisodesApi(self.api_client).episodes_id_get(id, accept_language=language)
-        # get by id will always contain data (or throw error otherwise)
-        # since the api does not actually throw the error, we are doing it ourselves when no id is returned
+        # Get by id will always contain data (or throw error otherwise)
+        # Since the api does not actually throw the error, we are doing it ourselves when no id is returned
         if not result.data.id:
             raise ApiException(status=404, reason='Not Found')
         return result.data
@@ -167,7 +167,7 @@ class TvdbClient(object):
         :rtype: tvdb_api_v2.models.update_data.UpdateData
         """
         result = UpdatesApi(self.api_client).updated_query_get(from_time, accept_language=language)
-        # since the api does not actually throw the error, we are doing it ourselves when no data is returned
+        # Since the api does not actually throw the error, we are doing it ourselves when no data is returned
         if not result.data:
             raise ApiException(status=404, reason='Not Found')
         return result

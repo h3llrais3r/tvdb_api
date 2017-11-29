@@ -17,8 +17,8 @@ def parse_search_series_data(response, best_result=False):
     >>> result = parser.parse_search_series(SearchApi(self.api_client).search_series_get(**params))
     """
     data = json.loads(response.data)
-    # json object is a dict with a data key which contains a list of SeriesSearchData
-    # result is an object of type SeriesSearch
+    # The json object is a dict with a data key which contains a list of SeriesSearchData
+    # The result is an object of type SeriesSearch
     search_results = data['data'] if 'data' in data.keys() else None
     if best_result:
         return SeriesSearch([_deserialize_model(search_results[0], SeriesSearchData())])
