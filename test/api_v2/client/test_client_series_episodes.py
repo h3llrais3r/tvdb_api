@@ -1,6 +1,7 @@
 import unittest
 
 from tvdb_api_v2.models.series_episodes import SeriesEpisodes
+from tvdb_api_v2.models.series_episodes_query import SeriesEpisodesQuery
 from tvdb_api_v2.rest import ApiException
 from tvdb_api_v2.client import TvdbClient
 
@@ -38,6 +39,78 @@ class TestClientSeriesEpisodes(unittest.TestCase):
         # asserts
         with self.assertRaises(ApiException) as e:
             self.client.get_series_episodes(0)
+        self.assertTrue(e.exception.status == 404)
+        self.assertTrue(e.exception.reason == 'Not Found')
+
+    def test_get_series_episode(self):
+        response = self.client.get_series_episode(296295, season=1, episode=1)
+        # asserts
+        self.assertIsNotNone(response)
+        self.assertIsInstance(response, SeriesEpisodesQuery)
+        self.assertTrue(len(response.data) == 1)
+        self.assertTrue(response.data[0].id == 5255064)
+        self.assertTrue(response.data[0].aired_season == 1)
+        self.assertTrue(response.data[0].aired_episode_number == 1)
+
+    def test_get_series_episode_with_errors(self):
+        response = self.client.get_series_episode(296295, season=1, episode=1, language='nl')
+        # asserts
+        self.assertIsNotNone(response)
+        self.assertIsInstance(response, SeriesEpisodesQuery)
+        self.assertTrue(len(response.data) == 1)
+        self.assertTrue(response.data[0].id == 5255064)
+        self.assertTrue(response.data[0].aired_season == 1)
+        self.assertTrue(response.data[0].aired_episode_number == 1)
+        self.assertIsNotNone(response.errors)
+        self.assertIsNotNone(response.errors.invalid_language)
+
+    def test_get_series_episode_401(self):
+        self.client.clear_token()
+        # asserts
+        with self.assertRaises(ApiException) as e:
+            self.client.get_series_episode(296295, season=1, episode=1)
+        self.assertTrue(e.exception.status == 401)
+        self.assertTrue(e.exception.reason == 'Unauthorized')
+
+    def test_get_series_episode_404(self):
+        # asserts
+        with self.assertRaises(ApiException) as e:
+            self.client.get_series_episode(0, season=0, episode=0)
+        self.assertTrue(e.exception.status == 404)
+        self.assertTrue(e.exception.reason == 'Not Found')
+
+    def test_get_series_episode_by_absolute_number(self):
+        response = self.client.get_series_episode_by_absolute_number(296295, absolute_number=1)
+        # asserts
+        self.assertIsNotNone(response)
+        self.assertIsInstance(response, SeriesEpisodesQuery)
+        self.assertTrue(len(response.data) == 1)
+        self.assertTrue(response.data[0].id == 5255064)
+        self.assertTrue(response.data[0].absolute_number == 1)
+
+    def test_get_series_episode_by_absolute_number_with_errors(self):
+        response = self.client.get_series_episode_by_absolute_number(296295, absolute_number=1, language='nl')
+        # asserts
+        self.assertIsNotNone(response)
+        self.assertIsInstance(response, SeriesEpisodesQuery)
+        self.assertTrue(len(response.data) == 1)
+        self.assertTrue(response.data[0].id == 5255064)
+        self.assertTrue(response.data[0].absolute_number == 1)
+        self.assertIsNotNone(response.errors)
+        self.assertIsNotNone(response.errors.invalid_language)
+
+    def test_get_series_episode_by_absolute_number_401(self):
+        self.client.clear_token()
+        # asserts
+        with self.assertRaises(ApiException) as e:
+            self.client.get_series_episode_by_absolute_number(296295, absolute_number=1)
+        self.assertTrue(e.exception.status == 401)
+        self.assertTrue(e.exception.reason == 'Unauthorized')
+
+    def test_get_series_episode_by_absolute_number_404(self):
+        # asserts
+        with self.assertRaises(ApiException) as e:
+            self.client.get_series_episode_by_absolute_number(0, absolute_number=0)
         self.assertTrue(e.exception.status == 404)
         self.assertTrue(e.exception.reason == 'Not Found')
 

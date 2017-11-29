@@ -109,6 +109,38 @@ class TvdbClient(object):
         """
         return SeriesApi(self.api_client).series_id_episodes_get(id, page=page)
 
+    def get_series_episode(self, id, season, episode, language='en'):
+        """Get a single episode of a series.
+
+        :param id: The id of the series on tvdb
+        :type id: long
+        :param season: The season number
+        :type season: str
+        :param episode: The episode number
+        :type episode: str
+        :param language: The desired language in which to return the result
+        :type language: str
+        :return: The series episodes query object
+        :rtype: tvdb_api_v2.models.series_episodes_query.SeriesEpisodesQuery
+        """
+        return SeriesApi(self.api_client).series_id_episodes_query_get(id, aired_season=season, aired_episode=episode,
+                                                                       accept_language=language)
+
+    def get_series_episode_by_absolute_number(self, id, absolute_number, language='en'):
+        """Get a single episode of a series by it's absolute number.
+
+        :param id: The id of the series on tvdb
+        :type id: long
+        :param absolute_number: The absolute number
+        :type absolute_number: str
+        :param language: The desired language in which to return the result
+        :type language: str
+        :return: The series episodes query object
+        :rtype: tvdb_api_v2.models.series_episodes_query.SeriesEpisodesQuery
+        """
+        return SeriesApi(self.api_client).series_id_episodes_query_get(id, absolute_number=absolute_number,
+                                                                       accept_language=language)
+
     def get_series_images_count(self, id, language='en'):
         """Get the images count (for all image_type values) of a series.
 
