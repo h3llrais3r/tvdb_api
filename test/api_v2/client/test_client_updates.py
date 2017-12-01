@@ -12,7 +12,7 @@ class TestClientEpisodes(unittest.TestCase):
 
     def setUp(self):
         self.client = TvdbClient()
-        self.client.authenticate()
+        self.client.login()
 
     def tearDown(self):
         self.client.clear_token()

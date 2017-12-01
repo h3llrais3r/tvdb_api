@@ -10,7 +10,7 @@ class TestClientAuth(unittest.TestCase):
 
     def setUp(self):
         self.client = TvdbClient()
-        self.token = self.client.authenticate()
+        self.token = self.client.login()
 
     def tearDown(self):
         self.client.clear_token()
@@ -25,7 +25,7 @@ class TestClientAuth(unittest.TestCase):
         self.client.configuration.api_key['ApiKey'] = ''
         # asserts
         with self.assertRaises(ApiException) as e:
-            self.client.authenticate()
+            self.client.login()
         self.assertTrue(e.exception.status == 401)
         self.assertTrue(e.exception.reason == 'Unauthorized')
 
