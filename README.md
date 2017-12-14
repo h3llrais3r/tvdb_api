@@ -13,7 +13,7 @@ Python 2.7 and 3.4+
 ## Implemented methods
 
 ### Authentication api
-- authenticate
+- login
 - refresh_token
 - clear_token
 
@@ -24,6 +24,8 @@ Python 2.7 and 3.4+
 ### Series api
 - get_series
 - get_series_episodes
+- get_series_episode
+- get_series_episode_by_absolute_number
 - get_series_images_count
 - get_series_images
 
