@@ -93,7 +93,6 @@ Class | Method | HTTP request | Description
 *UsersApi* | [**user_ratings_query_get**](docs/UsersApi.md#user_ratings_query_get) | **GET** /user/ratings/query | 
 *UsersApi* | [**user_ratings_query_params_get**](docs/UsersApi.md#user_ratings_query_params_get) | **GET** /user/ratings/query/params | 
 
-
 ## Documentation For Models
 
  - [Auth](docs/Auth.md)
@@ -140,18 +139,10 @@ Class | Method | HTTP request | Description
  - [UserRatingsDataNoLinksEmptyArray](docs/UserRatingsDataNoLinksEmptyArray.md)
  - [UserRatingsQueryParams](docs/UserRatingsQueryParams.md)
 
-
 ## Documentation For Authorization
-
 
 ## jwtToken
 
 - **Type**: API key
 - **API key parameter name**: Authorization
 - **Location**: HTTP header
-
-
-## Author
-
-
-
