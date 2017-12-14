@@ -1,4 +1,4 @@
-# tvdb-api-v2
+# tvdb_api_v2
 
 [![Build Status](https://travis-ci.org/h3llrais3r/tvdb_api_v2.svg?branch=master)](https://travis-ci.org/h3llrais3r/tvdb_api_v2)
 [![License](https://img.shields.io/github/license/h3llrais3r/tvdb_api_v2.svg)](https://github.com/h3llrais3r/tvdb_api_v2/blob/master/LICENSE)
