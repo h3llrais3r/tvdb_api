@@ -4,7 +4,7 @@ language: python
 # Python versions to build
 python:
   - "2.7"
-  - "3.2"
+  #- "3.2" # Support for Python 3.0-3.2 has been dropped
   - "3.3"
   - "3.4"
   - "3.5"
@@ -18,7 +18,7 @@ install:
 
 # build command(s)
 script:
-  - nosetests --with-coverage --cover-package=tvdb_api_v2 --cover-branches
+  - nosetests --with-coverage --cover-branches --cover-package=tvdb_api_v2
 
 # after success command(s)
 after_succes:
