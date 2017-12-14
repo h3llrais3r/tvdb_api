@@ -22,4 +22,4 @@ script:
 
 # after success command(s)
 after_success:
-  - coveralls -v
+  - coveralls
