@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import unittest
 
 from tvdb_api_v2.models.series_search import SeriesSearch
@@ -24,6 +26,14 @@ class TestClientSearch(unittest.TestCase):
         self.assertIsInstance(response, SeriesSearch)
         self.assertTrue(len(response.data) == 1)
         self.assertTrue(response.data[0].id == 296295)
+
+    def test_search_series_by_name_with_special_characters(self):
+        response = self.client.search_series_by_name(u'Fais pas ci, fais pas ça'.encode('utf-8'), language='fr')
+        # asserts
+        self.assertIsNotNone(response)
+        self.assertIsInstance(response, SeriesSearch)
+        self.assertTrue(len(response.data) != 0)
+        self.assertTrue([x for x in response.data if x.id == 80977])
 
     def test_search_series_by_name_multiple_results(self):
         response = self.client.search_series_by_name('the americans')
