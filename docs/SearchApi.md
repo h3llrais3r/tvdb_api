@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **search_series_get**
-> SeriesSearch search_series_get(name=name, imdb_id=imdb_id, zap2it_id=zap2it_id, accept_language=accept_language)
+> SeriesSearchResults search_series_get(name=name, imdb_id=imdb_id, zap2it_id=zap2it_id, slug=slug, accept_language=accept_language)
 
 
 
@@ -33,10 +33,11 @@ api_instance = tvdb_api_v2.SearchApi()
 name = 'name_example' # str | Name of the series to search for. (optional)
 imdb_id = 'imdb_id_example' # str | IMDB id of the series (optional)
 zap2it_id = 'zap2it_id_example' # str | Zap2it ID of the series to search for. (optional)
+slug = 'slug_example' # str | Slug from site URL of series (https://www.thetvdb.com/series/$SLUG) (optional)
 accept_language = 'accept_language_example' # str | Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
 
 try: 
-    api_response = api_instance.search_series_get(name=name, imdb_id=imdb_id, zap2it_id=zap2it_id, accept_language=accept_language)
+    api_response = api_instance.search_series_get(name=name, imdb_id=imdb_id, zap2it_id=zap2it_id, slug=slug, accept_language=accept_language)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling SearchApi->search_series_get: %s\n" % e)
@@ -49,11 +50,12 @@ Name | Type | Description  | Notes
  **name** | **str**| Name of the series to search for. | [optional] 
  **imdb_id** | **str**| IMDB id of the series | [optional] 
  **zap2it_id** | **str**| Zap2it ID of the series to search for. | [optional] 
+ **slug** | **str**| Slug from site URL of series (https://www.thetvdb.com/series/$SLUG) | [optional] 
  **accept_language** | **str**| Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
 
 ### Return type
 
-[**SeriesSearch**](SeriesSearch.md)
+[**SeriesSearchResults**](SeriesSearchResults.md)
 
 ### Authorization
 

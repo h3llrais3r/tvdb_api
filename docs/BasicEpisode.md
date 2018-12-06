@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **episode_name** | **str** |  | [optional] 
 **first_aired** | **str** |  | [optional] 
 **id** | **int** |  | [optional] 
+**language** | [**EpisodeLanguageInfo**](EpisodeLanguageInfo.md) |  | [optional] 
 **last_updated** | **int** |  | [optional] 
 **overview** | **str** |  | [optional] 
 

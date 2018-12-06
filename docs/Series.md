@@ -18,10 +18,11 @@ Name | Type | Description | Notes
 **overview** | **str** |  | [optional] 
 **rating** | **str** |  | [optional] 
 **runtime** | **str** |  | [optional] 
-**series_id** | **int** |  | [optional] 
+**series_id** | **str** |  | [optional] 
 **series_name** | **str** |  | [optional] 
 **site_rating** | **float** |  | [optional] 
 **site_rating_count** | **int** |  | [optional] 
+**slug** | **str** |  | [optional] 
 **status** | **str** |  | [optional] 
 **zap2it_id** | **str** |  | [optional] 
 

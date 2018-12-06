@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**list[BasicEpisode]**](BasicEpisode.md) |  | [optional] 
+**data** | [**list[Episode]**](Episode.md) |  | [optional] 
 **errors** | [**JSONErrors**](JSONErrors.md) |  | [optional] 
 **links** | [**Links**](Links.md) |  | [optional] 
 

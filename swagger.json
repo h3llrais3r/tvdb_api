@@ -13,20 +13,20 @@
   "info": {
     "description": "API v2 targets v1 functionality with a few minor additions. The API is accessible via https://api.thetvdb.com and provides the following REST endpoints in JSON format.\n\n\nHow to use this API documentation\n----------------\n\n\nYou may browse the API routes without authentication, but if you wish to send requests to the API and see response data, then you must authenticate.\n1. Obtain a JWT token by `POST`ing  to the `/login` route in the `Authentication` section with your API key and credentials.\n1. Paste the JWT token from the response into the \"JWT Token\" field at the top of the page and click the 'Add Token' button.\n\n\nYou will now be able to use the remaining routes to send requests to the API and get a response.\n\n\nLanguage Selection\n----------------\n\n\nLanguage selection is done via the `Accept-Language` header. At the moment, you may only pass one language abbreviation in the header at a time. Valid language abbreviations can be found at the `/languages` route..\n\n\nAuthentication\n----------------\n\n\nAuthentication to use the API is similar to the How-to section above. Users must `POST` to the `/login` route with their API key and credentials in the following format in order to obtain a JWT token.\n\n`{\"apikey\":\"APIKEY\",\"username\":\"USERNAME\",\"userkey\":\"USERKEY\"}`\n\nNote that the username and key are ONLY required for the `/user` routes. The user's key is labled `Account Identifier` in the account section of the main site.\nThe token is then used in all subsequent requests by providing it in the `Authorization` header. The header will look like: `Authorization: Bearer \u003cyourJWTtoken\u003e`. Currently, the token expires after 24 hours. You can `GET` the `/refresh_token` route to extend that expiration date.\n\n\nVersioning\n----------------\n\n\nYou may request a different version of the API by including an `Accept` header in your request with the following format: `Accept:application/vnd.thetvdb.v$VERSION`. This documentation automatically uses the version seen at the top and bottom of the page.",
     "title": "TheTVDB API v2",
-    "version": "2.1.2"
+    "version": "2.2.0"
   },
   "basePath": "/",
   "paths": {
     "/episodes/{id}": {
       "get": {
-        "description": "Returns the full information for a given episode id. __Deprecation Warning:__ The _director_ key will be deprecated in favor of the new _directors_ key in a future release.",
-        "tags": [
-          "Episodes"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns the full information for a given episode id. __Deprecation Warning:__ The _director_ key will be deprecated in favor of the new _directors_ key in a future release.",
+        "tags": [
+          "Episodes"
         ],
         "parameters": [
           {
@@ -60,14 +60,14 @@
     },
     "/languages": {
       "get": {
-        "description": "All available languages. These language abbreviations can be used in the `Accept-Language` header for routes that return translation records.",
-        "tags": [
-          "Languages"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "All available languages. These language abbreviations can be used in the `Accept-Language` header for routes that return translation records.",
+        "tags": [
+          "Languages"
         ],
         "responses": {
           "200": {
@@ -87,14 +87,14 @@
     },
     "/languages/{id}": {
       "get": {
-        "description": "Information about a particular language, given the language ID.",
-        "tags": [
-          "Languages"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Information about a particular language, given the language ID.",
+        "tags": [
+          "Languages"
         ],
         "parameters": [
           {
@@ -158,14 +158,14 @@
     },
     "/refresh_token": {
       "get": {
-        "description": "Refreshes your current, valid JWT token and returns a new token. Hit this route so that you do not have to post to `/login` with your API key and credentials once you have already been authenticated.",
-        "tags": [
-          "Authentication"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Refreshes your current, valid JWT token and returns a new token. Hit this route so that you do not have to post to `/login` with your API key and credentials once you have already been authenticated.",
+        "tags": [
+          "Authentication"
         ],
         "responses": {
           "200": {
@@ -185,14 +185,14 @@
     },
     "/search/series": {
       "get": {
-        "description": "Allows the user to search for a series based on the following parameters.",
-        "tags": [
-          "Search"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Allows the user to search for a series based on the following parameters.",
+        "tags": [
+          "Search"
         ],
         "parameters": [
           {
@@ -205,6 +205,9 @@
             "$ref": "#/parameters/zap2itId"
           },
           {
+            "$ref": "#/parameters/slug"
+          },
+          {
             "$ref": "#/parameters/Accept-Language"
           }
         ],
@@ -212,7 +215,7 @@
           "200": {
             "description": "An array of results that match the provided query.",
             "schema": {
-              "$ref": "#/definitions/SeriesSearch"
+              "$ref": "#/definitions/SeriesSearchResults"
             }
           },
           "401": {
@@ -232,14 +235,14 @@
     },
     "/search/series/params": {
       "get": {
-        "description": "Returns an array of parameters to query by in the `/search/series` route.",
-        "tags": [
-          "Search"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns an array of parameters to query by in the `/search/series` route.",
+        "tags": [
+          "Search"
         ],
         "responses": {
           "200": {
@@ -259,14 +262,14 @@
     },
     "/series/{id}": {
       "get": {
-        "description": "Returns a series records that contains all information known about a particular series id.",
-        "tags": [
-          "Series"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns a series records that contains all information known about a particular series id.",
+        "tags": [
+          "Series"
         ],
         "parameters": [
           {
@@ -298,14 +301,14 @@
         }
       },
       "head": {
-        "description": "Returns header information only about the given series ID.",
-        "tags": [
-          "Series"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns header information only about the given series ID.",
+        "tags": [
+          "Series"
         ],
         "parameters": [
           {
@@ -336,14 +339,14 @@
     },
     "/series/{id}/actors": {
       "get": {
-        "description": "Returns actors for the given series id",
-        "tags": [
-          "Series"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns actors for the given series id",
+        "tags": [
+          "Series"
         ],
         "parameters": [
           {
@@ -374,14 +377,14 @@
     },
     "/series/{id}/episodes": {
       "get": {
-        "description": "All episodes for a given series. Paginated with 100 results per page.",
-        "tags": [
-          "Series"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "All episodes for a given series. Paginated with 100 results per page.",
+        "tags": [
+          "Series"
         ],
         "parameters": [
           {
@@ -415,14 +418,14 @@
     },
     "/series/{id}/episodes/query": {
       "get": {
-        "description": "This route allows the user to query against episodes for the given series. The response is a paginated array of episode records that have been filtered down to basic information.",
-        "tags": [
-          "Series"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "This route allows the user to query against episodes for the given series. The response is a paginated array of episode records.",
+        "tags": [
+          "Series"
         ],
         "parameters": [
           {
@@ -477,14 +480,14 @@
     },
     "/series/{id}/episodes/query/params": {
       "get": {
-        "description": "Returns the allowed query keys for the `/series/{id}/episodes/query` route",
-        "tags": [
-          "Series"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns the allowed query keys for the `/series/{id}/episodes/query` route",
+        "tags": [
+          "Series"
         ],
         "parameters": [
           {
@@ -515,14 +518,14 @@
     },
     "/series/{id}/episodes/summary": {
       "get": {
-        "description": "Returns a summary of the episodes and seasons available for the series.\n\n__Note__: Season \"0\" is for all episodes that are considered to be specials.",
-        "tags": [
-          "Series"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns a summary of the episodes and seasons available for the series.\n\n__Note__: Season \"0\" is for all episodes that are considered to be specials.",
+        "tags": [
+          "Series"
         ],
         "parameters": [
           {
@@ -553,14 +556,14 @@
     },
     "/series/{id}/filter": {
       "get": {
-        "description": "Returns a series records, filtered by the supplied comma-separated list of keys. Query keys can be found at the `/series/{id}/filter/params` route.",
-        "tags": [
-          "Series"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns a series records, filtered by the supplied comma-separated list of keys. Query keys can be found at the `/series/{id}/filter/params` route.",
+        "tags": [
+          "Series"
         ],
         "parameters": [
           {
@@ -597,14 +600,14 @@
     },
     "/series/{id}/filter/params": {
       "get": {
-        "description": "Returns the list of keys available for the `/series/{id}/filter` route",
-        "tags": [
-          "Series"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns the list of keys available for the `/series/{id}/filter` route",
+        "tags": [
+          "Series"
         ],
         "parameters": [
           {
@@ -638,14 +641,14 @@
     },
     "/series/{id}/images": {
       "get": {
-        "description": "Returns a summary of the images for a particular series",
-        "tags": [
-          "Series"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns a summary of the images for a particular series",
+        "tags": [
+          "Series"
         ],
         "parameters": [
           {
@@ -679,14 +682,14 @@
     },
     "/series/{id}/images/query": {
       "get": {
-        "description": "Query images for the given series ID.",
-        "tags": [
-          "Series"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Query images for the given series ID.",
+        "tags": [
+          "Series"
         ],
         "parameters": [
           {
@@ -729,14 +732,14 @@
     },
     "/series/{id}/images/query/params": {
       "get": {
-        "description": "Returns the allowed query keys for the `/series/{id}/images/query` route. Contains a parameter record for each unique `keyType`, listing values that will return results.",
-        "tags": [
-          "Series"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns the allowed query keys for the `/series/{id}/images/query` route. Contains a parameter record for each unique `keyType`, listing values that will return results.",
+        "tags": [
+          "Series"
         ],
         "parameters": [
           {
@@ -770,14 +773,14 @@
     },
     "/updated/query": {
       "get": {
-        "description": "Returns an array of series that have changed in a maximum of one week blocks since the provided `fromTime`.\n\n\nThe user may specify a `toTime` to grab results for less than a week. Any timespan larger than a week will be reduced down to one week automatically.",
-        "tags": [
-          "Updates"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns an array of series that have changed in a maximum of one week blocks since the provided `fromTime`.\n\n\nThe user may specify a `toTime` to grab results for less than a week. Any timespan larger than a week will be reduced down to one week automatically.",
+        "tags": [
+          "Updates"
         ],
         "parameters": [
           {
@@ -814,14 +817,14 @@
     },
     "/updated/query/params": {
       "get": {
-        "description": "Returns an array of valid query keys for the `/updated/query/params` route.",
-        "tags": [
-          "Updates"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns an array of valid query keys for the `/updated/query/params` route.",
+        "tags": [
+          "Updates"
         ],
         "responses": {
           "200": {
@@ -847,14 +850,14 @@
     },
     "/user": {
       "get": {
-        "description": "Returns basic information about the currently authenticated user.",
-        "tags": [
-          "Users"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns basic information about the currently authenticated user.",
+        "tags": [
+          "Users"
         ],
         "responses": {
           "200": {
@@ -880,14 +883,14 @@
     },
     "/user/favorites": {
       "get": {
-        "description": "Returns an array of favorite series for a given user, will be a blank array if no favorites exist.",
-        "tags": [
-          "Users"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns an array of favorite series for a given user, will be a blank array if no favorites exist.",
+        "tags": [
+          "Users"
         ],
         "responses": {
           "200": {
@@ -913,14 +916,14 @@
     },
     "/user/favorites/{id}": {
       "put": {
-        "description": "Adds the supplied series ID to the user’s favorite’s list and returns the updated list.",
-        "tags": [
-          "Users"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Adds the supplied series ID to the user’s favorite’s list and returns the updated list.",
+        "tags": [
+          "Users"
         ],
         "parameters": [
           {
@@ -955,14 +958,14 @@
         }
       },
       "delete": {
-        "description": "Deletes the given series ID from the user’s favorite’s list and returns the updated list.",
-        "tags": [
-          "Users"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Deletes the given series ID from the user’s favorite’s list and returns the updated list.",
+        "tags": [
+          "Users"
         ],
         "parameters": [
           {
@@ -999,14 +1002,14 @@
     },
     "/user/ratings": {
       "get": {
-        "description": "Returns an array of ratings for the given user.",
-        "tags": [
-          "Users"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns an array of ratings for the given user.",
+        "tags": [
+          "Users"
         ],
         "responses": {
           "200": {
@@ -1032,14 +1035,14 @@
     },
     "/user/ratings/query": {
       "get": {
-        "description": "Returns an array of ratings for a given user that match the query.",
-        "tags": [
-          "Users"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns an array of ratings for a given user that match the query.",
+        "tags": [
+          "Users"
         ],
         "parameters": [
           {
@@ -1070,14 +1073,14 @@
     },
     "/user/ratings/query/params": {
       "get": {
-        "description": "Returns a list of query params for use in the `/user/ratings/query` route.",
-        "tags": [
-          "Users"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "Returns a list of query params for use in the `/user/ratings/query` route.",
+        "tags": [
+          "Users"
         ],
         "responses": {
           "200": {
@@ -1103,14 +1106,14 @@
     },
     "/user/ratings/{itemType}/{itemId}": {
       "delete": {
-        "description": "This route deletes a given rating of a given type.",
-        "tags": [
-          "Users"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "This route deletes a given rating of a given type.",
+        "tags": [
+          "Users"
         ],
         "parameters": [
           {
@@ -1144,14 +1147,14 @@
     },
     "/user/ratings/{itemType}/{itemId}/{itemRating}": {
       "put": {
-        "description": "This route updates a given rating of a given type.",
-        "tags": [
-          "Users"
-        ],
         "security": [
           {
             "jwtToken": []
           }
+        ],
+        "description": "This route updates a given rating of a given type.",
+        "tags": [
+          "Users"
         ],
         "parameters": [
           {
@@ -1227,6 +1230,9 @@
         },
         "id": {
           "type": "integer"
+        },
+        "language": {
+          "$ref": "#/definitions/EpisodeLanguageInfo"
         },
         "lastUpdated": {
           "type": "integer"
@@ -1359,6 +1365,17 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "EpisodeLanguageInfo": {
+      "type": "object",
+      "properties": {
+        "episodeName": {
+          "type": "string"
+        },
+        "overview": {
+          "type": "string"
         }
       }
     },
@@ -1522,7 +1539,7 @@
           "type": "string"
         },
         "seriesId": {
-          "type": "integer"
+          "type": "string"
         },
         "seriesName": {
           "type": "string"
@@ -1532,6 +1549,9 @@
         },
         "siteRatingCount": {
           "type": "integer"
+        },
+        "slug": {
+          "type": "string"
         },
         "status": {
           "type": "string"
@@ -1603,7 +1623,7 @@
         "data": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/BasicEpisode"
+            "$ref": "#/definitions/Episode"
           }
         },
         "errors": {
@@ -1619,7 +1639,7 @@
         "data": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/BasicEpisode"
+            "$ref": "#/definitions/Episode"
           }
         },
         "errors": {
@@ -1776,20 +1796,7 @@
         }
       }
     },
-    "SeriesSearch": {
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/SeriesSearchData"
-          }
-        },
-        "errors": {
-          "$ref": "#/definitions/JSONErrors"
-        }
-      }
-    },
-    "SeriesSearchData": {
+    "SeriesSearchResult": {
       "type": "object",
       "properties": {
         "aliases": {
@@ -1816,8 +1823,21 @@
         "seriesName": {
           "type": "string"
         },
+        "slug": {
+          "type": "string"
+        },
         "status": {
           "type": "string"
+        }
+      }
+    },
+    "SeriesSearchResults": {
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/SeriesSearchResult"
+          }
         }
       }
     },
@@ -2104,6 +2124,12 @@
       "type": "string",
       "description": "Name of the series to search for.",
       "name": "name",
+      "in": "query"
+    },
+    "slug": {
+      "type": "string",
+      "description": "Slug from site URL of series (https://www.thetvdb.com/series/$SLUG)",
+      "name": "slug",
       "in": "query"
     },
     "subKey": {
