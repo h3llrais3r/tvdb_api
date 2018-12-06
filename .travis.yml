@@ -4,12 +4,9 @@ language: python
 # Python versions to build
 python:
   - "2.7"
-  #- "3.2" # Support for Python 3.0-3.2 has been dropped
-  - "3.3"
   - "3.4"
   - "3.5"
-  #- "3.5-dev" # 3.5 development branch
-  #- "nightly" # points to the latest development branch e.g. 3.6-dev
+  - "3.6"
 
 # command(s) to install dependencies
 install:
