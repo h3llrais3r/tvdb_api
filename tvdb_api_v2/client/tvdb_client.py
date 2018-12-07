@@ -169,6 +169,28 @@ class TvdbClient(object):
         """
         return SeriesApi(self.api_client).series_id_images_query_get(id, key_type=image_type, accept_language=language)
 
+    def get_series_highest_rated_image(self, id, image_type='poster', language='en'):
+        """Get the highest rated image (of the specified image type) of a series.
+
+        :param id: the id of the series on tvdb
+        :type id: long
+        :param image_type: the image type (possible types are: 'fanart', 'poster', 'season', 'seasonwide', 'series')
+        :type image_type: str
+        :param language: the desired language in which to return the result
+        :type language: str
+        :return: The series image query results object
+        :rtype: tvdb_api_v2.models.series_image_query_result.SeriesImageQueryResult
+        """
+        highest_rated_image = None
+        images = SeriesApi(self.api_client).series_id_images_query_get(id, key_type=image_type,
+                                                                       accept_language=language)
+        if images.data:
+            # Sort by multiplying the rating average with the number of ratings
+            images_sorted = sorted(images.data, key=lambda x: x.ratings_info.average * x.ratings_info.count,
+                                   reverse=True)
+            highest_rated_image = images_sorted[0] if len(images_sorted) > 0 else None
+        return highest_rated_image
+
     ###############
     # EpisodesApi #
     ###############

@@ -71,6 +71,28 @@ class TestClientSeriesImages(unittest.TestCase):
         self.assertTrue(e.exception.status == 404)
         self.assertTrue(e.exception.reason == 'Not Found')
 
+    def test_get_series_highest_rated_image(self):
+        response = self.client.get_series_highest_rated_image(296295)
+        # asserts
+        self.assertIsNotNone(response)
+        self.assertIsInstance(response, SeriesImageQueryResult)
+        self.assertTrue(response.key_type == 'poster')
+
+    def test_get_series_highest_rated_image_401(self):
+        self.client.clear_token()
+        # asserts
+        with self.assertRaises(ApiException) as e:
+            self.client.get_series_highest_rated_image(296295)
+        self.assertTrue(e.exception.status == 401)
+        self.assertTrue(e.exception.reason == 'Unauthorized')
+
+    def test_get_series_highest_rated_image_404(self):
+        # asserts
+        with self.assertRaises(ApiException) as e:
+            self.client.get_series_highest_rated_image(0)
+        self.assertTrue(e.exception.status == 404)
+        self.assertTrue(e.exception.reason == 'Not Found')
+
 
 if __name__ == '__main__':
     unittest.main()
