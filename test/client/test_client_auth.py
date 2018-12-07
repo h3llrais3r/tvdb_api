@@ -1,12 +1,14 @@
+# coding: utf-8
+
 import time
 import unittest
 
-from tvdb_api_v2.rest import ApiException
 from tvdb_api_v2.client import TvdbClient
+from tvdb_api_v2.rest import ApiException
 
 
 class TestClientAuth(unittest.TestCase):
-    """ Client authentication unit tests """
+    """Client authentication unit tests."""
 
     def setUp(self):
         self.client = TvdbClient()

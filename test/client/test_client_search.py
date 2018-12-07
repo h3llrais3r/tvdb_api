@@ -2,14 +2,14 @@
 
 import unittest
 
+from tvdb_api_v2.client import TvdbClient
 from tvdb_api_v2.models.series_search_result import SeriesSearchResult
 from tvdb_api_v2.models.series_search_results import SeriesSearchResults
 from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.client import TvdbClient
 
 
 class TestClientSearch(unittest.TestCase):
-    """ Client search unit tests """
+    """Client search unit tests."""
 
     def setUp(self):
         self.client = TvdbClient()

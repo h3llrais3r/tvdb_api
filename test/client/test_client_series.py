@@ -1,12 +1,14 @@
+# coding: utf-8
+
 import unittest
 
+from tvdb_api_v2.client import TvdbClient
 from tvdb_api_v2.models.series_data import SeriesData
 from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.client import TvdbClient
 
 
 class TestClientSeries(unittest.TestCase):
-    """ Client series unit tests """
+    """Client series unit tests."""
 
     def setUp(self):
         self.client = TvdbClient()

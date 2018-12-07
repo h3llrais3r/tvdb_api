@@ -1,14 +1,16 @@
-from datetime import date, timedelta
-import unittest
+# coding: utf-8
 
+import unittest
+from datetime import date, timedelta
+
+from tvdb_api_v2.client import TvdbClient
 from tvdb_api_v2.models.update import Update
 from tvdb_api_v2.models.update_data import UpdateData
 from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.client import TvdbClient
 
 
 class TestClientEpisodes(unittest.TestCase):
-    """ Client updates unit tests """
+    """Client updates unit tests."""
 
     def setUp(self):
         self.client = TvdbClient()
