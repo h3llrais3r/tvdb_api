@@ -10,8 +10,15 @@ class TestUtilsArtwork(unittest.TestCase):
 
     def test_get_artwork_url(self):
         file_name = 'posters/296295-2.jpg'
+        thumbnail_file_name = '_cache/posters/296295-2.jpg'
         # asserts
         self.assertTrue('https://www.thetvdb.com/banners/posters/296295-2.jpg', get_artwork_url(file_name))
+        self.assertTrue('https://www.thetvdb.com/banners/_cache/posters/296295-2.jpg',
+                        get_artwork_url(file_name, thumbnail=True))
+        self.assertTrue('https://www.thetvdb.com/banners/_cache/posters/296295-2.jpg',
+                        get_artwork_url(thumbnail_file_name))
+        self.assertTrue('https://www.thetvdb.com/banners/_cache/posters/296295-2.jpg',
+                        get_artwork_url(thumbnail_file_name, thumbnail=True))
 
 
 if __name__ == '__main__':
