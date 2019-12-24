@@ -2,7 +2,7 @@
 
 import unittest
 
-from tvdb_api_v2.utils.artwork import get_artwork_url
+from tvdb_api.utils.artwork import get_artwork_url
 
 
 class TestUtilsArtwork(unittest.TestCase):

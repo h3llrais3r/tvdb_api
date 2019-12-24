@@ -1,4 +1,4 @@
-# tvdb_api_v2.LanguagesApi
+# tvdb_api.LanguagesApi
 
 All URIs are relative to *https://localhost*
 
@@ -19,17 +19,17 @@ All available languages. These language abbreviations can be used in the `Accept
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.LanguagesApi()
+api_instance = tvdb_api.LanguagesApi()
 
 try: 
     api_response = api_instance.languages_get()
@@ -67,17 +67,17 @@ Information about a particular language, given the language ID.
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.LanguagesApi()
+api_instance = tvdb_api.LanguagesApi()
 id = 'id_example' # str | ID of the language
 
 try: 

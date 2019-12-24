@@ -1,4 +1,4 @@
-# tvdb_api_v2.UsersApi
+# tvdb_api.UsersApi
 
 All URIs are relative to *https://localhost*
 
@@ -26,17 +26,17 @@ Returns an array of favorite series for a given user, will be a blank array if n
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.UsersApi()
+api_instance = tvdb_api.UsersApi()
 
 try: 
     api_response = api_instance.user_favorites_get()
@@ -74,17 +74,17 @@ Deletes the given series ID from the user’s favorite’s list and returns the 
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.UsersApi()
+api_instance = tvdb_api.UsersApi()
 id = 789 # int | ID of the series
 
 try: 
@@ -126,17 +126,17 @@ Adds the supplied series ID to the user’s favorite’s list and returns the up
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.UsersApi()
+api_instance = tvdb_api.UsersApi()
 id = 789 # int | ID of the series
 
 try: 
@@ -178,17 +178,17 @@ Returns basic information about the currently authenticated user.
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.UsersApi()
+api_instance = tvdb_api.UsersApi()
 
 try: 
     api_response = api_instance.user_get()
@@ -226,17 +226,17 @@ Returns an array of ratings for the given user.
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.UsersApi()
+api_instance = tvdb_api.UsersApi()
 
 try: 
     api_response = api_instance.user_ratings_get()
@@ -274,17 +274,17 @@ This route deletes a given rating of a given type.
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.UsersApi()
+api_instance = tvdb_api.UsersApi()
 item_type = 'item_type_example' # str | Item to update. Can be either 'series', 'episode', or 'image'
 item_id = 789 # int | ID of the ratings record that you wish to modify
 
@@ -328,17 +328,17 @@ This route updates a given rating of a given type.
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.UsersApi()
+api_instance = tvdb_api.UsersApi()
 item_type = 'item_type_example' # str | Item to update. Can be either 'series', 'episode', or 'image'
 item_id = 789 # int | ID of the ratings record that you wish to modify
 item_rating = 789 # int | The updated rating number
@@ -384,17 +384,17 @@ Returns an array of ratings for a given user that match the query.
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.UsersApi()
+api_instance = tvdb_api.UsersApi()
 item_type = 'item_type_example' # str | Item to query. Can be either 'series', 'episode', or 'banner' (optional)
 
 try: 
@@ -436,17 +436,17 @@ Returns a list of query params for use in the `/user/ratings/query` route.
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.UsersApi()
+api_instance = tvdb_api.UsersApi()
 
 try: 
     api_response = api_instance.user_ratings_query_params_get()

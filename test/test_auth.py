@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.auth import Auth
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.auth import Auth
 
 
 class TestAuth(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestAuth(unittest.TestCase):
         Test Auth
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.auth.Auth()
+        #model = tvdb_api.models.auth.Auth()
         pass
 
 

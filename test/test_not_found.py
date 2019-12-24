@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.not_found import NotFound
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.not_found import NotFound
 
 
 class TestNotFound(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestNotFound(unittest.TestCase):
         Test NotFound
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.not_found.NotFound()
+        #model = tvdb_api.models.not_found.NotFound()
         pass
 
 

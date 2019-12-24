@@ -1,4 +1,4 @@
-# tvdb_api_v2.SearchApi
+# tvdb_api.SearchApi
 
 All URIs are relative to *https://localhost*
 
@@ -19,17 +19,17 @@ Allows the user to search for a series based on the following parameters.
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.SearchApi()
+api_instance = tvdb_api.SearchApi()
 name = 'name_example' # str | Name of the series to search for. (optional)
 imdb_id = 'imdb_id_example' # str | IMDB id of the series (optional)
 zap2it_id = 'zap2it_id_example' # str | Zap2it ID of the series to search for. (optional)
@@ -79,17 +79,17 @@ Returns an array of parameters to query by in the `/search/series` route.
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.SearchApi()
+api_instance = tvdb_api.SearchApi()
 
 try: 
     api_response = api_instance.search_series_params_get()

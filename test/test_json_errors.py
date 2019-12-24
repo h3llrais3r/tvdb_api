@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.json_errors import JSONErrors
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.json_errors import JSONErrors
 
 
 class TestJSONErrors(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestJSONErrors(unittest.TestCase):
         Test JSONErrors
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.json_errors.JSONErrors()
+        #model = tvdb_api.models.json_errors.JSONErrors()
         pass
 
 

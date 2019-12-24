@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.links import Links
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.links import Links
 
 
 class TestLinks(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestLinks(unittest.TestCase):
         Test Links
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.links.Links()
+        #model = tvdb_api.models.links.Links()
         pass
 
 

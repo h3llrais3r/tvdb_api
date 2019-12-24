@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.language_data import LanguageData
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.language_data import LanguageData
 
 
 class TestLanguageData(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestLanguageData(unittest.TestCase):
         Test LanguageData
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.language_data.LanguageData()
+        #model = tvdb_api.models.language_data.LanguageData()
         pass
 
 

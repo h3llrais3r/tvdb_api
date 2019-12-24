@@ -4,9 +4,9 @@ import json
 
 from six import iteritems, string_types
 
-from tvdb_api_v2.models.series_episodes_summary import SeriesEpisodesSummary
-from tvdb_api_v2.models.series_search_result import SeriesSearchResult
-from tvdb_api_v2.models.series_search_results import SeriesSearchResults
+from tvdb_api.models.series_episodes_summary import SeriesEpisodesSummary
+from tvdb_api.models.series_search_result import SeriesSearchResult
+from tvdb_api.models.series_search_results import SeriesSearchResults
 
 
 # Custom parser module (if we want to parse the response ourselves)

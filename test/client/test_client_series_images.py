@@ -2,12 +2,12 @@
 
 import unittest
 
-from tvdb_api_v2.client import TvdbClient
-from tvdb_api_v2.models.series_image_query_result import SeriesImageQueryResult
-from tvdb_api_v2.models.series_image_query_results import SeriesImageQueryResults
-from tvdb_api_v2.models.series_images_count import SeriesImagesCount
-from tvdb_api_v2.models.series_images_counts import SeriesImagesCounts
-from tvdb_api_v2.rest import ApiException
+from tvdb_api.client import TvdbClient
+from tvdb_api.models.series_image_query_result import SeriesImageQueryResult
+from tvdb_api.models.series_image_query_results import SeriesImageQueryResults
+from tvdb_api.models.series_images_count import SeriesImagesCount
+from tvdb_api.models.series_images_counts import SeriesImagesCounts
+from tvdb_api.rest import ApiException
 
 
 class TestClientSeriesImages(unittest.TestCase):
@@ -39,14 +39,12 @@ class TestClientSeriesImages(unittest.TestCase):
         with self.assertRaises(ApiException) as e:
             self.client.get_series_images_count(296295)
         self.assertTrue(e.exception.status == 401)
-        self.assertTrue(e.exception.reason == 'Unauthorized')
 
     def test_get_series_images_count_404(self):
         # asserts
         with self.assertRaises(ApiException) as e:
             self.client.get_series_images_count(0)
         self.assertTrue(e.exception.status == 404)
-        self.assertTrue(e.exception.reason == 'Not Found')
 
     def test_get_series_images(self):
         response = self.client.get_series_images(296295, 'poster')
@@ -64,14 +62,12 @@ class TestClientSeriesImages(unittest.TestCase):
         with self.assertRaises(ApiException) as e:
             self.client.get_series_images(296295)
         self.assertTrue(e.exception.status == 401)
-        self.assertTrue(e.exception.reason == 'Unauthorized')
 
     def test_get_series_images_404(self):
         # asserts
         with self.assertRaises(ApiException) as e:
             self.client.get_series_images(0)
         self.assertTrue(e.exception.status == 404)
-        self.assertTrue(e.exception.reason == 'Not Found')
 
     def test_get_series_highest_rated_image(self):
         response = self.client.get_series_highest_rated_image(296295)
@@ -86,14 +82,12 @@ class TestClientSeriesImages(unittest.TestCase):
         with self.assertRaises(ApiException) as e:
             self.client.get_series_highest_rated_image(296295)
         self.assertTrue(e.exception.status == 401)
-        self.assertTrue(e.exception.reason == 'Unauthorized')
 
     def test_get_series_highest_rated_image_404(self):
         # asserts
         with self.assertRaises(ApiException) as e:
             self.client.get_series_highest_rated_image(0)
         self.assertTrue(e.exception.status == 404)
-        self.assertTrue(e.exception.reason == 'Not Found')
 
 
 if __name__ == '__main__':

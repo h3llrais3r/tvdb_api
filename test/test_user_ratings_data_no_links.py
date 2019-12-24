@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.user_ratings_data_no_links import UserRatingsDataNoLinks
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.user_ratings_data_no_links import UserRatingsDataNoLinks
 
 
 class TestUserRatingsDataNoLinks(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestUserRatingsDataNoLinks(unittest.TestCase):
         Test UserRatingsDataNoLinks
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.user_ratings_data_no_links.UserRatingsDataNoLinks()
+        #model = tvdb_api.models.user_ratings_data_no_links.UserRatingsDataNoLinks()
         pass
 
 

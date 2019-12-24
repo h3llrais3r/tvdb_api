@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.not_authorized import NotAuthorized
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.not_authorized import NotAuthorized
 
 
 class TestNotAuthorized(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestNotAuthorized(unittest.TestCase):
         Test NotAuthorized
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.not_authorized.NotAuthorized()
+        #model = tvdb_api.models.not_authorized.NotAuthorized()
         pass
 
 

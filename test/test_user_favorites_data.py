@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.user_favorites_data import UserFavoritesData
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.user_favorites_data import UserFavoritesData
 
 
 class TestUserFavoritesData(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestUserFavoritesData(unittest.TestCase):
         Test UserFavoritesData
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.user_favorites_data.UserFavoritesData()
+        #model = tvdb_api.models.user_favorites_data.UserFavoritesData()
         pass
 
 

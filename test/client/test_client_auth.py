@@ -3,8 +3,8 @@
 import time
 import unittest
 
-from tvdb_api_v2.client import TvdbClient
-from tvdb_api_v2.rest import ApiException
+from tvdb_api.client import TvdbClient
+from tvdb_api.rest import ApiException
 
 
 class TestClientAuth(unittest.TestCase):
@@ -29,7 +29,6 @@ class TestClientAuth(unittest.TestCase):
         with self.assertRaises(ApiException) as e:
             self.client.login()
         self.assertTrue(e.exception.status == 401)
-        self.assertTrue(e.exception.reason == 'Unauthorized')
 
     def test_refresh_token(self):
         # sleep before refreshing the token to be sure we get a new one
@@ -45,7 +44,6 @@ class TestClientAuth(unittest.TestCase):
         with self.assertRaises(ApiException) as e:
             self.client.refresh_token()
         self.assertTrue(e.exception.status == 401)
-        self.assertTrue(e.exception.reason == 'Unauthorized')
 
 
 if __name__ == '__main__':

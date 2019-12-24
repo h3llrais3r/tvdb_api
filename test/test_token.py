@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.token import Token
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.token import Token
 
 
 class TestToken(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestToken(unittest.TestCase):
         Test Token
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.token.Token()
+        #model = tvdb_api.models.token.Token()
         pass
 
 

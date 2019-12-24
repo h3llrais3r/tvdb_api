@@ -909,6 +909,8 @@ class SeriesApi(object):
         header_params['Content-Type'] = self.api_client.\
             select_header_content_type(['application/json'])
 
+        header_params['X-Thetvdb-Api-Version'] = '2.2.0'
+
         # Authentication setting
         auth_settings = ['jwtToken']
 

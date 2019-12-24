@@ -2,12 +2,12 @@
 
 import unittest
 
-from tvdb_api_v2.client import TvdbClient
-from tvdb_api_v2.models.episode import Episode
-from tvdb_api_v2.models.series_episodes import SeriesEpisodes
-from tvdb_api_v2.models.series_episodes_query import SeriesEpisodesQuery
-from tvdb_api_v2.models.series_episodes_summary import SeriesEpisodesSummary
-from tvdb_api_v2.rest import ApiException
+from tvdb_api.client import TvdbClient
+from tvdb_api.models.episode import Episode
+from tvdb_api.models.series_episodes import SeriesEpisodes
+from tvdb_api.models.series_episodes_query import SeriesEpisodesQuery
+from tvdb_api.models.series_episodes_summary import SeriesEpisodesSummary
+from tvdb_api.rest import ApiException
 
 
 class TestClientSeriesEpisodes(unittest.TestCase):
@@ -26,7 +26,7 @@ class TestClientSeriesEpisodes(unittest.TestCase):
         # asserts
         self.assertIsNotNone(response)
         self.assertIsInstance(response, SeriesEpisodesSummary)
-        self.assertTrue(response.aired_episodes == '47')
+        self.assertTrue(response.aired_episodes == '53')
         self.assertIsNotNone(response.aired_seasons)
         self.assertIsInstance(response.aired_seasons, list)
         self.assertTrue(len(response.aired_seasons) == 4)
@@ -37,14 +37,13 @@ class TestClientSeriesEpisodes(unittest.TestCase):
         with self.assertRaises(ApiException) as e:
             self.client.get_series_episodes_summary(296295)
         self.assertTrue(e.exception.status == 401)
-        self.assertTrue(e.exception.reason == 'Unauthorized')
 
+    @unittest.skip('Skipping because no 404 is returned anymore in api response for an invalid series id')
     def test_get_series_episodes_summary_404(self):
         # asserts
         with self.assertRaises(ApiException) as e:
             self.client.get_series_episodes_summary(0)
         self.assertTrue(e.exception.status == 404)
-        self.assertTrue(e.exception.reason == 'Not Found')
 
     def test_get_series_episodes(self):
         response = self.client.get_series_episodes(296295)
@@ -62,14 +61,12 @@ class TestClientSeriesEpisodes(unittest.TestCase):
         with self.assertRaises(ApiException) as e:
             self.client.get_series_episodes(296295)
         self.assertTrue(e.exception.status == 401)
-        self.assertTrue(e.exception.reason == 'Unauthorized')
 
     def test_get_series_episodes_404(self):
         # asserts
         with self.assertRaises(ApiException) as e:
             self.client.get_series_episodes(0)
         self.assertTrue(e.exception.status == 404)
-        self.assertTrue(e.exception.reason == 'Not Found')
 
     def test_get_series_episodes_by_season(self):
         response = self.client.get_series_episodes_by_season(296295, 1)
@@ -88,14 +85,12 @@ class TestClientSeriesEpisodes(unittest.TestCase):
         with self.assertRaises(ApiException) as e:
             self.client.get_series_episodes_by_season(296295, 0)
         self.assertTrue(e.exception.status == 401)
-        self.assertTrue(e.exception.reason == 'Unauthorized')
 
     def test_get_series_episodes_by_season_404(self):
         # asserts
         with self.assertRaises(ApiException) as e:
             self.client.get_series_episodes_by_season(0, 0)
         self.assertTrue(e.exception.status == 404)
-        self.assertTrue(e.exception.reason == 'Not Found')
 
     def test_get_series_episode(self):
         response = self.client.get_series_episode(296295, season=1, episode=1)
@@ -107,6 +102,7 @@ class TestClientSeriesEpisodes(unittest.TestCase):
         self.assertTrue(response.data[0].aired_season == 1)
         self.assertTrue(response.data[0].aired_episode_number == 1)
 
+    @unittest.skip('Skipping because no errors are returned anymore in api response')
     def test_get_series_episode_with_errors(self):
         response = self.client.get_series_episode(296295, season=1, episode=1, language='nl')
         # asserts
@@ -125,14 +121,12 @@ class TestClientSeriesEpisodes(unittest.TestCase):
         with self.assertRaises(ApiException) as e:
             self.client.get_series_episode(296295, season=1, episode=1)
         self.assertTrue(e.exception.status == 401)
-        self.assertTrue(e.exception.reason == 'Unauthorized')
 
     def test_get_series_episode_404(self):
         # asserts
         with self.assertRaises(ApiException) as e:
             self.client.get_series_episode(0, season=0, episode=0)
         self.assertTrue(e.exception.status == 404)
-        self.assertTrue(e.exception.reason == 'Not Found')
 
     def test_get_series_episode_by_absolute_number(self):
         response = self.client.get_series_episode_by_absolute_number(296295, absolute_number=1)
@@ -143,6 +137,7 @@ class TestClientSeriesEpisodes(unittest.TestCase):
         self.assertTrue(response.data[0].id == 5255064)
         self.assertTrue(response.data[0].absolute_number == 1)
 
+    @unittest.skip('Skipping because no errors are returned anymore in api response')
     def test_get_series_episode_by_absolute_number_with_errors(self):
         response = self.client.get_series_episode_by_absolute_number(296295, absolute_number=1, language='nl')
         # asserts
@@ -160,14 +155,12 @@ class TestClientSeriesEpisodes(unittest.TestCase):
         with self.assertRaises(ApiException) as e:
             self.client.get_series_episode_by_absolute_number(296295, absolute_number=1)
         self.assertTrue(e.exception.status == 401)
-        self.assertTrue(e.exception.reason == 'Unauthorized')
 
     def test_get_series_episode_by_absolute_number_404(self):
         # asserts
         with self.assertRaises(ApiException) as e:
             self.client.get_series_episode_by_absolute_number(0, absolute_number=0)
         self.assertTrue(e.exception.status == 404)
-        self.assertTrue(e.exception.reason == 'Not Found')
 
 
 if __name__ == '__main__':

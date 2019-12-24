@@ -2,10 +2,10 @@
 
 import unittest
 
-from tvdb_api_v2.client import TvdbClient
-from tvdb_api_v2.models.series_search_result import SeriesSearchResult
-from tvdb_api_v2.models.series_search_results import SeriesSearchResults
-from tvdb_api_v2.rest import ApiException
+from tvdb_api.client import TvdbClient
+from tvdb_api.models.series_search_result import SeriesSearchResult
+from tvdb_api.models.series_search_results import SeriesSearchResults
+from tvdb_api.rest import ApiException
 
 
 class TestClientSearch(unittest.TestCase):
@@ -51,14 +51,12 @@ class TestClientSearch(unittest.TestCase):
         with self.assertRaises(ApiException) as e:
             self.client.search_series_by_name('ash vs evil dead')
         self.assertTrue(e.exception.status == 401)
-        self.assertTrue(e.exception.reason == 'Unauthorized')
 
     def test_search_series_by_name_404(self):
         # asserts
         with self.assertRaises(ApiException) as e:
-            self.client.search_series_by_name('unexisting series')
+            self.client.search_series_by_name('unexistingseries')
         self.assertTrue(e.exception.status == 404)
-        self.assertTrue(e.exception.reason == 'Not Found')
 
     def test_search_series_by_imdb_id(self):
         response = self.client.search_series_by_imdb_id('tt4189022')
@@ -73,14 +71,12 @@ class TestClientSearch(unittest.TestCase):
         with self.assertRaises(ApiException) as e:
             self.client.search_series_by_imdb_id('tt4189022')
         self.assertTrue(e.exception.status == 401)
-        self.assertTrue(e.exception.reason == 'Unauthorized')
 
     def test_search_series_by_imdb_id_404(self):
         # asserts
         with self.assertRaises(ApiException) as e:
             self.client.search_series_by_imdb_id('tt0000000')
         self.assertTrue(e.exception.status == 404)
-        self.assertTrue(e.exception.reason == 'Not Found')
 
 
 if __name__ == '__main__':

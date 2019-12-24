@@ -17,16 +17,16 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.apis.authentication_api import AuthenticationApi
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.apis.authentication_api import AuthenticationApi
 
 
 class TestAuthenticationApi(unittest.TestCase):
     """ AuthenticationApi unit test stubs """
 
     def setUp(self):
-        self.api = tvdb_api_v2.apis.authentication_api.AuthenticationApi()
+        self.api = tvdb_api.apis.authentication_api.AuthenticationApi()
 
     def tearDown(self):
         pass

@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.series_image_query_result import SeriesImageQueryResult
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.series_image_query_result import SeriesImageQueryResult
 
 
 class TestSeriesImageQueryResult(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestSeriesImageQueryResult(unittest.TestCase):
         Test SeriesImageQueryResult
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.series_image_query_result.SeriesImageQueryResult()
+        #model = tvdb_api.models.series_image_query_result.SeriesImageQueryResult()
         pass
 
 

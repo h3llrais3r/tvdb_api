@@ -1,19 +1,19 @@
 # coding: utf-8
 
-from tvdb_api_v2 import __version__
-from tvdb_api_v2.api_client import ApiClient
-from tvdb_api_v2.apis.authentication_api import AuthenticationApi
-from tvdb_api_v2.apis.episodes_api import EpisodesApi
-from tvdb_api_v2.apis.search_api import SearchApi
-from tvdb_api_v2.apis.series_api import SeriesApi
-from tvdb_api_v2.apis.updates_api import UpdatesApi
-from tvdb_api_v2.client import parser
-from tvdb_api_v2.configuration import Configuration
-from tvdb_api_v2.models.auth import Auth
-from tvdb_api_v2.rest import ApiException
+from tvdb_api import __version__
+from tvdb_api.api_client import ApiClient
+from tvdb_api.apis.authentication_api import AuthenticationApi
+from tvdb_api.apis.episodes_api import EpisodesApi
+from tvdb_api.apis.search_api import SearchApi
+from tvdb_api.apis.series_api import SeriesApi
+from tvdb_api.apis.updates_api import UpdatesApi
+from tvdb_api.client import parser
+from tvdb_api.configuration import Configuration
+from tvdb_api.models.auth import Auth
+from tvdb_api.rest import ApiException
 
 API_KEY = '9710D6F39C4A2457'
-USER_AGENT = 'tvdb_api_v2/' + __version__.__version__
+USER_AGENT = 'tvdb_api/' + __version__.__version__
 HOST = 'https://api.thetvdb.com'
 
 
@@ -69,7 +69,7 @@ class TvdbClient(object):
         :param language: the desired language in which to return the result
         :type language: str
         :return: the series search results object
-        :rtype: tvdb_api_v2.models.series_search_results.SeriesSearchResults
+        :rtype: tvdb_api.models.series_search_results.SeriesSearchResults
         """
         return SearchApi(self.api_client).search_series_get(name=name, accept_language=language)
 
@@ -81,7 +81,7 @@ class TvdbClient(object):
         :param language: the desired language in which to return the result
         :type language: str
         :return: the series search results object
-        :rtype: tvdb_api_v2.models.series_search_result.SeriesSearchResult
+        :rtype: tvdb_api.models.series_search_result.SeriesSearchResult
         """
         result = SearchApi(self.api_client).search_series_get(imdb_id=imdb_id, accept_language=language)
         # Return the first result (there should be only 1)
@@ -99,7 +99,7 @@ class TvdbClient(object):
         :param language: the desired language in which to return the result
         :type language: str
         :return: the series data object
-        :rtype: tvdb_api_v2.models.series_data.SeriesData
+        :rtype: tvdb_api.models.series_data.SeriesData
         """
         return SeriesApi(self.api_client).series_id_get(id, accept_language=language)
 
@@ -109,7 +109,7 @@ class TvdbClient(object):
         :param id: the id of the series on tvdb
         :type id: long
         :return: the series episodes summary object
-        :rtype: tvdb_api_v2.models.series_episodes_summary.SeriesEpisodesSummary
+        :rtype: tvdb_api.models.series_episodes_summary.SeriesEpisodesSummary
         """
         # Manual parsing because the generated object is not in sync with the object model!
         params = {'id': id, '_preload_content': False}
@@ -123,7 +123,7 @@ class TvdbClient(object):
         :param page: the page of the results to fetch (100 results per page)
         :type page: str
         :return: the series episodes object
-        :rtype: tvdb_api_v2.models.series_episodes.SeriesEpisodes
+        :rtype: tvdb_api.models.series_episodes.SeriesEpisodes
         """
         return SeriesApi(self.api_client).series_id_episodes_get(id, page=page)
 
@@ -137,7 +137,7 @@ class TvdbClient(object):
         :param language: the desired language in which to return the result
         :type language: str
         :return: the series episodes object
-        :rtype: tvdb_api_v2.models.series_episodes_query.SeriesEpisodesQuery
+        :rtype: tvdb_api.models.series_episodes_query.SeriesEpisodesQuery
         """
         return SeriesApi(self.api_client).series_id_episodes_query_get(id, aired_season=season,
                                                                        accept_language=language)
@@ -154,7 +154,7 @@ class TvdbClient(object):
         :param language: the desired language in which to return the result
         :type language: str
         :return: the series episodes query object
-        :rtype: tvdb_api_v2.models.series_episodes_query.SeriesEpisodesQuery
+        :rtype: tvdb_api.models.series_episodes_query.SeriesEpisodesQuery
         """
         return SeriesApi(self.api_client).series_id_episodes_query_get(id, aired_season=season, aired_episode=episode,
                                                                        accept_language=language)
@@ -169,7 +169,7 @@ class TvdbClient(object):
         :param language: the desired language in which to return the result
         :type language: str
         :return: the series episodes query object
-        :rtype: tvdb_api_v2.models.series_episodes_query.SeriesEpisodesQuery
+        :rtype: tvdb_api.models.series_episodes_query.SeriesEpisodesQuery
         """
         return SeriesApi(self.api_client).series_id_episodes_query_get(id, absolute_number=absolute_number,
                                                                        accept_language=language)
@@ -180,7 +180,7 @@ class TvdbClient(object):
         :param id: the id of the series on tvdb
         :type id: long
         :return: the series images counts object
-        :rtype: tvdb_api_v2.models.series_images_counts.SeriesImagesCounts
+        :rtype: tvdb_api.models.series_images_counts.SeriesImagesCounts
         """
         return SeriesApi(self.api_client).series_id_images_get(id, accept_language=language)
 
@@ -194,7 +194,7 @@ class TvdbClient(object):
         :param language: the desired language in which to return the result
         :type language: str
         :return: the series image query results object
-        :rtype: tvdb_api_v2.models.series_image_query_results.SeriesImageQueryResults
+        :rtype: tvdb_api.models.series_image_query_results.SeriesImageQueryResults
         """
         return SeriesApi(self.api_client).series_id_images_query_get(id, key_type=image_type, accept_language=language)
 
@@ -208,7 +208,7 @@ class TvdbClient(object):
         :param language: the desired language in which to return the result
         :type language: str
         :return: the series image query results object
-        :rtype: tvdb_api_v2.models.series_image_query_result.SeriesImageQueryResult
+        :rtype: tvdb_api.models.series_image_query_result.SeriesImageQueryResult
         """
         highest_rated_image = None
         images = SeriesApi(self.api_client).series_id_images_query_get(id, key_type=image_type,
@@ -232,7 +232,7 @@ class TvdbClient(object):
         :param language: the desired language in which to return the result
         :type language: str
         :return: the episode object
-        :rtype: tvdb_api_v2.models.episode.Episode
+        :rtype: tvdb_api.models.episode.Episode
         """
         result = EpisodesApi(self.api_client).episodes_id_get(id, accept_language=language)
         # Get by id will always contain data (or throw error otherwise)
@@ -253,7 +253,7 @@ class TvdbClient(object):
         :param language: the desired language in which to return the result
         :type language: str
         :return: the update data object
-        :rtype: tvdb_api_v2.models.update_data.UpdateData
+        :rtype: tvdb_api.models.update_data.UpdateData
         """
         result = UpdatesApi(self.api_client).updated_query_get(from_time, accept_language=language)
         # Since the api does not actually throw the error, we are doing it ourselves when no data is returned

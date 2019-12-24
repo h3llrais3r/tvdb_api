@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.episode_data_query_params import EpisodeDataQueryParams
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.episode_data_query_params import EpisodeDataQueryParams
 
 
 class TestEpisodeDataQueryParams(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestEpisodeDataQueryParams(unittest.TestCase):
         Test EpisodeDataQueryParams
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.episode_data_query_params.EpisodeDataQueryParams()
+        #model = tvdb_api.models.episode_data_query_params.EpisodeDataQueryParams()
         pass
 
 

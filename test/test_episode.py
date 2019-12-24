@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.episode import Episode
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.episode import Episode
 
 
 class TestEpisode(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestEpisode(unittest.TestCase):
         Test Episode
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.episode.Episode()
+        #model = tvdb_api.models.episode.Episode()
         pass
 
 

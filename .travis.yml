@@ -15,7 +15,7 @@ install:
 
 # build command(s)
 script:
-  - nosetests --verbose --with-coverage --cover-branches --cover-package=tvdb_api_v2
+  - nosetests --verbose --with-coverage --cover-branches --cover-package=tvdb_api
 
 # after success command(s)
 after_success:

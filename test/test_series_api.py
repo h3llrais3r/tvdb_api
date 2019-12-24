@@ -17,16 +17,16 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.apis.series_api import SeriesApi
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.apis.series_api import SeriesApi
 
 
 class TestSeriesApi(unittest.TestCase):
     """ SeriesApi unit test stubs """
 
     def setUp(self):
-        self.api = tvdb_api_v2.apis.series_api.SeriesApi()
+        self.api = tvdb_api.apis.series_api.SeriesApi()
 
     def tearDown(self):
         pass

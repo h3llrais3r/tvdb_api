@@ -120,7 +120,7 @@ class AuthenticationApi(object):
             body_params = params['authentication_string']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.\
-            select_header_accept(['application/json'])
+            select_header_accept(['application/vnd.thetvdb.v2.2.0'])
 
         # HTTP header `Content-Type`
         header_params['Content-Type'] = self.api_client.\

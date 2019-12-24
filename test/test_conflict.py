@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.conflict import Conflict
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.conflict import Conflict
 
 
 class TestConflict(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestConflict(unittest.TestCase):
         Test Conflict
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.conflict.Conflict()
+        #model = tvdb_api.models.conflict.Conflict()
         pass
 
 

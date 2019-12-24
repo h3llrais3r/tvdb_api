@@ -1,4 +1,4 @@
-# tvdb_api_v2.EpisodesApi
+# tvdb_api.EpisodesApi
 
 All URIs are relative to *https://localhost*
 
@@ -18,17 +18,17 @@ Returns the full information for a given episode id. __Deprecation Warning:__ Th
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.EpisodesApi()
+api_instance = tvdb_api.EpisodesApi()
 id = 789 # int | ID of the episode
 accept_language = 'accept_language_example' # str | Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
 

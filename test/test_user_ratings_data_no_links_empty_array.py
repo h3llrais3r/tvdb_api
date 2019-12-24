@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.user_ratings_data_no_links_empty_array import UserRatingsDataNoLinksEmptyArray
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.user_ratings_data_no_links_empty_array import UserRatingsDataNoLinksEmptyArray
 
 
 class TestUserRatingsDataNoLinksEmptyArray(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestUserRatingsDataNoLinksEmptyArray(unittest.TestCase):
         Test UserRatingsDataNoLinksEmptyArray
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.user_ratings_data_no_links_empty_array.UserRatingsDataNoLinksEmptyArray()
+        #model = tvdb_api.models.user_ratings_data_no_links_empty_array.UserRatingsDataNoLinksEmptyArray()
         pass
 
 

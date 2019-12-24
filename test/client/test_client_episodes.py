@@ -2,9 +2,9 @@
 
 import unittest
 
-from tvdb_api_v2.client import TvdbClient
-from tvdb_api_v2.models.episode import Episode
-from tvdb_api_v2.rest import ApiException
+from tvdb_api.client import TvdbClient
+from tvdb_api.models.episode import Episode
+from tvdb_api.rest import ApiException
 
 
 class TestClientEpisodes(unittest.TestCase):
@@ -33,14 +33,12 @@ class TestClientEpisodes(unittest.TestCase):
         with self.assertRaises(ApiException) as e:
             self.client.get_episode(5255064)
         self.assertTrue(e.exception.status == 401)
-        self.assertTrue(e.exception.reason == 'Unauthorized')
 
     def test_get_episode_404(self):
         # asserts
         with self.assertRaises(ApiException) as e:
             self.client.get_episode(0)
         self.assertTrue(e.exception.status == 404)
-        self.assertTrue(e.exception.reason == 'Not Found')
 
 
 if __name__ == '__main__':

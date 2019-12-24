@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.series_actors_data import SeriesActorsData
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.series_actors_data import SeriesActorsData
 
 
 class TestSeriesActorsData(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestSeriesActorsData(unittest.TestCase):
         Test SeriesActorsData
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.series_actors_data.SeriesActorsData()
+        #model = tvdb_api.models.series_actors_data.SeriesActorsData()
         pass
 
 

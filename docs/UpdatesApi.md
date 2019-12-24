@@ -1,4 +1,4 @@
-# tvdb_api_v2.UpdatesApi
+# tvdb_api.UpdatesApi
 
 All URIs are relative to *https://localhost*
 
@@ -19,17 +19,17 @@ Returns an array of series that have changed in a maximum of one week blocks sin
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.UpdatesApi()
+api_instance = tvdb_api.UpdatesApi()
 from_time = 'from_time_example' # str | Epoch time to start your date range.
 to_time = 'to_time_example' # str | Epoch time to end your date range. Must be one week from `fromTime`. (optional)
 accept_language = 'accept_language_example' # str | Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
@@ -75,17 +75,17 @@ Returns an array of valid query keys for the `/updated/query/params` route.
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.UpdatesApi()
+api_instance = tvdb_api.UpdatesApi()
 
 try: 
     api_response = api_instance.updated_query_params_get()

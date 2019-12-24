@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.update import Update
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.update import Update
 
 
 class TestUpdate(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestUpdate(unittest.TestCase):
         Test Update
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.update.Update()
+        #model = tvdb_api.models.update.Update()
         pass
 
 

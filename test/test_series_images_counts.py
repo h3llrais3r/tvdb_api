@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.series_images_counts import SeriesImagesCounts
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.series_images_counts import SeriesImagesCounts
 
 
 class TestSeriesImagesCounts(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestSeriesImagesCounts(unittest.TestCase):
         Test SeriesImagesCounts
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.series_images_counts.SeriesImagesCounts()
+        #model = tvdb_api.models.series_images_counts.SeriesImagesCounts()
         pass
 
 

@@ -1,4 +1,4 @@
-# tvdb_api_v2.AuthenticationApi
+# tvdb_api.AuthenticationApi
 
 All URIs are relative to *https://localhost*
 
@@ -19,13 +19,13 @@ Returns a session token to be included in the rest of the requests. Note that AP
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.AuthenticationApi()
-authentication_string = tvdb_api_v2.Auth() # Auth | JSON string containing your authentication details.
+api_instance = tvdb_api.AuthenticationApi()
+authentication_string = tvdb_api.Auth() # Auth | JSON string containing your authentication details.
 
 try: 
     api_response = api_instance.login_post(authentication_string)
@@ -66,17 +66,17 @@ Refreshes your current, valid JWT token and returns a new token. Hit this route 
 ```python
 from __future__ import print_function
 import time
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
+import tvdb_api
+from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api_v2.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api_v2.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api_v2.AuthenticationApi()
+api_instance = tvdb_api.AuthenticationApi()
 
 try: 
     api_response = api_instance.refresh_token_get()

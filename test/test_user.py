@@ -17,9 +17,9 @@ import os
 import sys
 import unittest
 
-import tvdb_api_v2
-from tvdb_api_v2.rest import ApiException
-from tvdb_api_v2.models.user import User
+import tvdb_api
+from tvdb_api.rest import ApiException
+from tvdb_api.models.user import User
 
 
 class TestUser(unittest.TestCase):
@@ -36,7 +36,7 @@ class TestUser(unittest.TestCase):
         Test User
         """
         # FIXME: construct object with mandatory attributes with example values
-        #model = tvdb_api_v2.models.user.User()
+        #model = tvdb_api.models.user.User()
         pass
 
 
