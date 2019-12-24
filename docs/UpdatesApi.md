@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Returns an array of series that have changed in a maximum of one week blocks since the provided `fromTime`.   The user may specify a `toTime` to grab results for less than a week. Any timespan larger than a week will be reduced down to one week automatically.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -24,17 +24,18 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.UpdatesApi()
+api_instance = tvdb_api.UpdatesApi(tvdb_api.ApiClient(configuration))
 from_time = 'from_time_example' # str | Epoch time to start your date range.
 to_time = 'to_time_example' # str | Epoch time to end your date range. Must be one week from `fromTime`. (optional)
-accept_language = 'accept_language_example' # str | Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
+accept_language = 'accept_language_example' # str | Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
 
-try: 
+try:
     api_response = api_instance.updated_query_get(from_time, to_time=to_time, accept_language=accept_language)
     pprint(api_response)
 except ApiException as e:
@@ -47,7 +48,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **from_time** | **str**| Epoch time to start your date range. | 
  **to_time** | **str**| Epoch time to end your date range. Must be one week from &#x60;fromTime&#x60;. | [optional] 
- **accept_language** | **str**| Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
+ **accept_language** | **str**| Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
 
 ### Return type
 
@@ -71,7 +72,7 @@ Name | Type | Description  | Notes
 
 Returns an array of valid query keys for the `/updated/query/params` route.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -80,14 +81,15 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.UpdatesApi()
+api_instance = tvdb_api.UpdatesApi(tvdb_api.ApiClient(configuration))
 
-try: 
+try:
     api_response = api_instance.updated_query_params_get()
     pprint(api_response)
 except ApiException as e:

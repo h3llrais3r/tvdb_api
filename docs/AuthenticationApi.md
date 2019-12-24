@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Returns a session token to be included in the rest of the requests. Note that API key authentication is required for all subsequent requests and user auth is required for routes in the `User` section
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -27,7 +27,7 @@ from pprint import pprint
 api_instance = tvdb_api.AuthenticationApi()
 authentication_string = tvdb_api.Auth() # Auth | JSON string containing your authentication details.
 
-try: 
+try:
     api_response = api_instance.login_post(authentication_string)
     pprint(api_response)
 except ApiException as e:
@@ -62,7 +62,7 @@ No authorization required
 
 Refreshes your current, valid JWT token and returns a new token. Hit this route so that you do not have to post to `/login` with your API key and credentials once you have already been authenticated.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -71,14 +71,15 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.AuthenticationApi()
+api_instance = tvdb_api.AuthenticationApi(tvdb_api.ApiClient(configuration))
 
-try: 
+try:
     api_response = api_instance.refresh_token_get()
     pprint(api_response)
 except ApiException as e:

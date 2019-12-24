@@ -25,7 +25,7 @@ Method | HTTP request | Description
 
 Returns actors for the given series id
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -34,15 +34,16 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.SeriesApi()
+api_instance = tvdb_api.SeriesApi(tvdb_api.ApiClient(configuration))
 id = 789 # int | ID of the series
 
-try: 
+try:
     api_response = api_instance.series_id_actors_get(id)
     pprint(api_response)
 except ApiException as e:
@@ -77,7 +78,7 @@ Name | Type | Description  | Notes
 
 All episodes for a given series. Paginated with 100 results per page.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -86,16 +87,17 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.SeriesApi()
+api_instance = tvdb_api.SeriesApi(tvdb_api.ApiClient(configuration))
 id = 789 # int | ID of the series
 page = 'page_example' # str | Page of results to fetch. Defaults to page 1 if not provided. (optional)
 
-try: 
+try:
     api_response = api_instance.series_id_episodes_get(id, page=page)
     pprint(api_response)
 except ApiException as e:
@@ -131,7 +133,7 @@ Name | Type | Description  | Notes
 
 This route allows the user to query against episodes for the given series. The response is a paginated array of episode records.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -140,12 +142,13 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.SeriesApi()
+api_instance = tvdb_api.SeriesApi(tvdb_api.ApiClient(configuration))
 id = 789 # int | ID of the series
 absolute_number = 'absolute_number_example' # str | Absolute number of the episode (optional)
 aired_season = 'aired_season_example' # str | Aired season number (optional)
@@ -154,9 +157,9 @@ dvd_season = 'dvd_season_example' # str | DVD season number (optional)
 dvd_episode = 'dvd_episode_example' # str | DVD episode number (optional)
 imdb_id = 'imdb_id_example' # str | IMDB id of the series (optional)
 page = 'page_example' # str | Page of results to fetch. Defaults to page 1 if not provided. (optional)
-accept_language = 'accept_language_example' # str | Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
+accept_language = 'accept_language_example' # str | Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
 
-try: 
+try:
     api_response = api_instance.series_id_episodes_query_get(id, absolute_number=absolute_number, aired_season=aired_season, aired_episode=aired_episode, dvd_season=dvd_season, dvd_episode=dvd_episode, imdb_id=imdb_id, page=page, accept_language=accept_language)
     pprint(api_response)
 except ApiException as e:
@@ -175,7 +178,7 @@ Name | Type | Description  | Notes
  **dvd_episode** | **str**| DVD episode number | [optional] 
  **imdb_id** | **str**| IMDB id of the series | [optional] 
  **page** | **str**| Page of results to fetch. Defaults to page 1 if not provided. | [optional] 
- **accept_language** | **str**| Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
+ **accept_language** | **str**| Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
 
 ### Return type
 
@@ -199,7 +202,7 @@ Name | Type | Description  | Notes
 
 Returns the allowed query keys for the `/series/{id}/episodes/query` route
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -208,15 +211,16 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.SeriesApi()
+api_instance = tvdb_api.SeriesApi(tvdb_api.ApiClient(configuration))
 id = 789 # int | ID of the series
 
-try: 
+try:
     api_response = api_instance.series_id_episodes_query_params_get(id)
     pprint(api_response)
 except ApiException as e:
@@ -251,7 +255,7 @@ Name | Type | Description  | Notes
 
 Returns a summary of the episodes and seasons available for the series.  __Note__: Season \"0\" is for all episodes that are considered to be specials.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -260,15 +264,16 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.SeriesApi()
+api_instance = tvdb_api.SeriesApi(tvdb_api.ApiClient(configuration))
 id = 789 # int | ID of the series
 
-try: 
+try:
     api_response = api_instance.series_id_episodes_summary_get(id)
     pprint(api_response)
 except ApiException as e:
@@ -303,7 +308,7 @@ Name | Type | Description  | Notes
 
 Returns a series records, filtered by the supplied comma-separated list of keys. Query keys can be found at the `/series/{id}/filter/params` route.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -312,17 +317,18 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.SeriesApi()
+api_instance = tvdb_api.SeriesApi(tvdb_api.ApiClient(configuration))
 id = 789 # int | ID of the series
 keys = 'keys_example' # str | Comma-separated list of keys to filter by
-accept_language = 'accept_language_example' # str | Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
+accept_language = 'accept_language_example' # str | Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
 
-try: 
+try:
     api_response = api_instance.series_id_filter_get(id, keys, accept_language=accept_language)
     pprint(api_response)
 except ApiException as e:
@@ -335,7 +341,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| ID of the series | 
  **keys** | **str**| Comma-separated list of keys to filter by | 
- **accept_language** | **str**| Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
+ **accept_language** | **str**| Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
 
 ### Return type
 
@@ -359,7 +365,7 @@ Name | Type | Description  | Notes
 
 Returns the list of keys available for the `/series/{id}/filter` route
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -368,16 +374,17 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.SeriesApi()
+api_instance = tvdb_api.SeriesApi(tvdb_api.ApiClient(configuration))
 id = 789 # int | ID of the series
-accept_language = 'accept_language_example' # str | Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
+accept_language = 'accept_language_example' # str | Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
 
-try: 
+try:
     api_response = api_instance.series_id_filter_params_get(id, accept_language=accept_language)
     pprint(api_response)
 except ApiException as e:
@@ -389,7 +396,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| ID of the series | 
- **accept_language** | **str**| Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
+ **accept_language** | **str**| Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
 
 ### Return type
 
@@ -413,7 +420,7 @@ Name | Type | Description  | Notes
 
 Returns a series records that contains all information known about a particular series id.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -422,16 +429,17 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.SeriesApi()
+api_instance = tvdb_api.SeriesApi(tvdb_api.ApiClient(configuration))
 id = 789 # int | ID of the series
-accept_language = 'accept_language_example' # str | Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
+accept_language = 'accept_language_example' # str | Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
 
-try: 
+try:
     api_response = api_instance.series_id_get(id, accept_language=accept_language)
     pprint(api_response)
 except ApiException as e:
@@ -443,7 +451,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| ID of the series | 
- **accept_language** | **str**| Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
+ **accept_language** | **str**| Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
 
 ### Return type
 
@@ -467,7 +475,7 @@ Name | Type | Description  | Notes
 
 Returns header information only about the given series ID.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -476,16 +484,17 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.SeriesApi()
+api_instance = tvdb_api.SeriesApi(tvdb_api.ApiClient(configuration))
 id = 789 # int | ID of the series
-accept_language = 'accept_language_example' # str | Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
+accept_language = 'accept_language_example' # str | Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
 
-try: 
+try:
     api_instance.series_id_head(id, accept_language=accept_language)
 except ApiException as e:
     print("Exception when calling SeriesApi->series_id_head: %s\n" % e)
@@ -496,7 +505,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| ID of the series | 
- **accept_language** | **str**| Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
+ **accept_language** | **str**| Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
 
 ### Return type
 
@@ -520,7 +529,7 @@ void (empty response body)
 
 Returns a summary of the images for a particular series
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -529,16 +538,17 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.SeriesApi()
+api_instance = tvdb_api.SeriesApi(tvdb_api.ApiClient(configuration))
 id = 789 # int | ID of the series
-accept_language = 'accept_language_example' # str | Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
+accept_language = 'accept_language_example' # str | Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
 
-try: 
+try:
     api_response = api_instance.series_id_images_get(id, accept_language=accept_language)
     pprint(api_response)
 except ApiException as e:
@@ -550,7 +560,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| ID of the series | 
- **accept_language** | **str**| Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
+ **accept_language** | **str**| Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
 
 ### Return type
 
@@ -574,7 +584,7 @@ Name | Type | Description  | Notes
 
 Query images for the given series ID.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -583,19 +593,20 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.SeriesApi()
+api_instance = tvdb_api.SeriesApi(tvdb_api.ApiClient(configuration))
 id = 789 # int | ID of the series
 key_type = 'key_type_example' # str | Type of image you're querying for (fanart, poster, etc. See ../images/query/params for more details). (optional)
 resolution = 'resolution_example' # str | Resolution to filter by (1280x1024, for example) (optional)
 sub_key = 'sub_key_example' # str | Subkey for the above query keys. See /series/{id}/images/query/params for more information (optional)
-accept_language = 'accept_language_example' # str | Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
+accept_language = 'accept_language_example' # str | Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
 
-try: 
+try:
     api_response = api_instance.series_id_images_query_get(id, key_type=key_type, resolution=resolution, sub_key=sub_key, accept_language=accept_language)
     pprint(api_response)
 except ApiException as e:
@@ -610,7 +621,7 @@ Name | Type | Description  | Notes
  **key_type** | **str**| Type of image you&#39;re querying for (fanart, poster, etc. See ../images/query/params for more details). | [optional] 
  **resolution** | **str**| Resolution to filter by (1280x1024, for example) | [optional] 
  **sub_key** | **str**| Subkey for the above query keys. See /series/{id}/images/query/params for more information | [optional] 
- **accept_language** | **str**| Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
+ **accept_language** | **str**| Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
 
 ### Return type
 
@@ -634,7 +645,7 @@ Name | Type | Description  | Notes
 
 Returns the allowed query keys for the `/series/{id}/images/query` route. Contains a parameter record for each unique `keyType`, listing values that will return results.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -643,16 +654,17 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.SeriesApi()
+api_instance = tvdb_api.SeriesApi(tvdb_api.ApiClient(configuration))
 id = 789 # int | ID of the series
-accept_language = 'accept_language_example' # str | Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
+accept_language = 'accept_language_example' # str | Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. (optional)
 
-try: 
+try:
     api_response = api_instance.series_id_images_query_params_get(id, accept_language=accept_language)
     pprint(api_response)
 except ApiException as e:
@@ -664,7 +676,7 @@ except ApiException as e:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **int**| ID of the series | 
- **accept_language** | **str**| Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
+ **accept_language** | **str**| Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields. | [optional] 
 
 ### Return type
 

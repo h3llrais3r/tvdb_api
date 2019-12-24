@@ -2,11 +2,11 @@
 
 from tvdb_api import __version__
 from tvdb_api.api_client import ApiClient
-from tvdb_api.apis.authentication_api import AuthenticationApi
-from tvdb_api.apis.episodes_api import EpisodesApi
-from tvdb_api.apis.search_api import SearchApi
-from tvdb_api.apis.series_api import SeriesApi
-from tvdb_api.apis.updates_api import UpdatesApi
+from tvdb_api.api.authentication_api import AuthenticationApi
+from tvdb_api.api.episodes_api import EpisodesApi
+from tvdb_api.api.search_api import SearchApi
+from tvdb_api.api.series_api import SeriesApi
+from tvdb_api.api.updates_api import UpdatesApi
 from tvdb_api.client import parser
 from tvdb_api.configuration import Configuration
 from tvdb_api.models.auth import Auth
@@ -25,7 +25,7 @@ class TvdbClient(object):
         self.configuration.api_key['ApiKey'] = api_key
         self.configuration.api_key_prefix['Authorization'] = 'Bearer'
         # Create client
-        self.api_client = ApiClient()
+        self.api_client = ApiClient(configuration=self.configuration)
         self.api_client.user_agent = user_agent
 
     #####################
@@ -95,7 +95,7 @@ class TvdbClient(object):
         """Get the details of a series.
 
         :param id: the id of the series on tvdb
-        :type id: long
+        :type id: int
         :param language: the desired language in which to return the result
         :type language: str
         :return: the series data object
@@ -107,7 +107,7 @@ class TvdbClient(object):
         """Get the summary of the episodes and seasons of a series.
 
         :param id: the id of the series on tvdb
-        :type id: long
+        :type id: int
         :return: the series episodes summary object
         :rtype: tvdb_api.models.series_episodes_summary.SeriesEpisodesSummary
         """
@@ -119,7 +119,7 @@ class TvdbClient(object):
         """Get all the episodes of a series.
 
         :param id: the id of the series on tvdb
-        :type id: long
+        :type id: int
         :param page: the page of the results to fetch (100 results per page)
         :type page: str
         :return: the series episodes object
@@ -131,7 +131,7 @@ class TvdbClient(object):
         """Get all the episodes belonging to a season of a series.
 
         :param id: the id of the series on tvdb
-        :type id: long
+        :type id: int
         :param season: the season number
         :type season: str
         :param language: the desired language in which to return the result
@@ -146,7 +146,7 @@ class TvdbClient(object):
         """Get a single episode of a series.
 
         :param id: the id of the series on tvdb
-        :type id: long
+        :type id: int
         :param season: the season number
         :type season: str
         :param episode: the episode number
@@ -163,7 +163,7 @@ class TvdbClient(object):
         """Get a single episode of a series by it's absolute number.
 
         :param id: the id of the series on tvdb
-        :type id: long
+        :type id: int
         :param absolute_number: the absolute number
         :type absolute_number: str
         :param language: the desired language in which to return the result
@@ -178,7 +178,7 @@ class TvdbClient(object):
         """Get the images count (for all image_type values) of a series.
 
         :param id: the id of the series on tvdb
-        :type id: long
+        :type id: int
         :return: the series images counts object
         :rtype: tvdb_api.models.series_images_counts.SeriesImagesCounts
         """
@@ -188,7 +188,7 @@ class TvdbClient(object):
         """Get all the images (of the specified image type) of a series.
 
         :param id: the id of the series on tvdb
-        :type id: long
+        :type id: int
         :param image_type: the image type (possible types are: 'fanart', 'poster', 'season', 'seasonwide', 'series')
         :type image_type: str
         :param language: the desired language in which to return the result
@@ -202,7 +202,7 @@ class TvdbClient(object):
         """Get the highest rated image (of the specified image type) of a series.
 
         :param id: the id of the series on tvdb
-        :type id: long
+        :type id: int
         :param image_type: the image type (possible types are: 'fanart', 'poster', 'season', 'seasonwide', 'series')
         :type image_type: str
         :param language: the desired language in which to return the result
@@ -228,7 +228,7 @@ class TvdbClient(object):
         """Get all the details of an episode.
 
         :param id: the id of the episode on tvdb
-        :type id: long
+        :type id: int
         :param language: the desired language in which to return the result
         :type language: str
         :return: the episode object

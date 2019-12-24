@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 All available languages. These language abbreviations can be used in the `Accept-Language` header for routes that return translation records.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -24,14 +24,15 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.LanguagesApi()
+api_instance = tvdb_api.LanguagesApi(tvdb_api.ApiClient(configuration))
 
-try: 
+try:
     api_response = api_instance.languages_get()
     pprint(api_response)
 except ApiException as e:
@@ -63,7 +64,7 @@ This endpoint does not need any parameter.
 
 Information about a particular language, given the language ID.
 
-### Example 
+### Example
 ```python
 from __future__ import print_function
 import time
@@ -72,15 +73,16 @@ from tvdb_api.rest import ApiException
 from pprint import pprint
 
 # Configure API key authorization: jwtToken
-tvdb_api.configuration.api_key['Authorization'] = 'YOUR_API_KEY'
+configuration = tvdb_api.Configuration()
+configuration.api_key['Authorization'] = 'YOUR_API_KEY'
 # Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# tvdb_api.configuration.api_key_prefix['Authorization'] = 'Bearer'
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = tvdb_api.LanguagesApi()
+api_instance = tvdb_api.LanguagesApi(tvdb_api.ApiClient(configuration))
 id = 'id_example' # str | ID of the language
 
-try: 
+try:
     api_response = api_instance.languages_id_get(id)
     pprint(api_response)
 except ApiException as e:

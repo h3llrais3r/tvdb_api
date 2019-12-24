@@ -38,7 +38,7 @@ class TestClientSeriesEpisodes(unittest.TestCase):
             self.client.get_series_episodes_summary(296295)
         self.assertTrue(e.exception.status == 401)
 
-    @unittest.skip('Skipping because no 404 is returned anymore in api response for an invalid series id')
+    @unittest.skip('Skipping because no 404 is returned anymore as api response for an invalid series id')
     def test_get_series_episodes_summary_404(self):
         # asserts
         with self.assertRaises(ApiException) as e:
@@ -69,7 +69,7 @@ class TestClientSeriesEpisodes(unittest.TestCase):
         self.assertTrue(e.exception.status == 404)
 
     def test_get_series_episodes_by_season(self):
-        response = self.client.get_series_episodes_by_season(296295, 1)
+        response = self.client.get_series_episodes_by_season(296295, '1')
         # asserts
         self.assertIsNotNone(response)
         self.assertIsInstance(response, SeriesEpisodesQuery)
@@ -83,17 +83,17 @@ class TestClientSeriesEpisodes(unittest.TestCase):
         self.client.clear_token()
         # asserts
         with self.assertRaises(ApiException) as e:
-            self.client.get_series_episodes_by_season(296295, 0)
+            self.client.get_series_episodes_by_season(296295, '0')
         self.assertTrue(e.exception.status == 401)
 
     def test_get_series_episodes_by_season_404(self):
         # asserts
         with self.assertRaises(ApiException) as e:
-            self.client.get_series_episodes_by_season(0, 0)
+            self.client.get_series_episodes_by_season(0, '0')
         self.assertTrue(e.exception.status == 404)
 
     def test_get_series_episode(self):
-        response = self.client.get_series_episode(296295, season=1, episode=1)
+        response = self.client.get_series_episode(296295, '1', '1')
         # asserts
         self.assertIsNotNone(response)
         self.assertIsInstance(response, SeriesEpisodesQuery)
@@ -104,7 +104,7 @@ class TestClientSeriesEpisodes(unittest.TestCase):
 
     @unittest.skip('Skipping because no errors are returned anymore in api response')
     def test_get_series_episode_with_errors(self):
-        response = self.client.get_series_episode(296295, season=1, episode=1, language='nl')
+        response = self.client.get_series_episode(296295, '1', '1', language='nl')
         # asserts
         self.assertIsNotNone(response)
         self.assertIsInstance(response, SeriesEpisodesQuery)
@@ -119,17 +119,17 @@ class TestClientSeriesEpisodes(unittest.TestCase):
         self.client.clear_token()
         # asserts
         with self.assertRaises(ApiException) as e:
-            self.client.get_series_episode(296295, season=1, episode=1)
+            self.client.get_series_episode(296295, '1', '1')
         self.assertTrue(e.exception.status == 401)
 
     def test_get_series_episode_404(self):
         # asserts
         with self.assertRaises(ApiException) as e:
-            self.client.get_series_episode(0, season=0, episode=0)
+            self.client.get_series_episode(0, '0', '0')
         self.assertTrue(e.exception.status == 404)
 
     def test_get_series_episode_by_absolute_number(self):
-        response = self.client.get_series_episode_by_absolute_number(296295, absolute_number=1)
+        response = self.client.get_series_episode_by_absolute_number(296295, '1')
         # asserts
         self.assertIsNotNone(response)
         self.assertIsInstance(response, SeriesEpisodesQuery)
@@ -139,7 +139,7 @@ class TestClientSeriesEpisodes(unittest.TestCase):
 
     @unittest.skip('Skipping because no errors are returned anymore in api response')
     def test_get_series_episode_by_absolute_number_with_errors(self):
-        response = self.client.get_series_episode_by_absolute_number(296295, absolute_number=1, language='nl')
+        response = self.client.get_series_episode_by_absolute_number(296295, '1', language='nl')
         # asserts
         self.assertIsNotNone(response)
         self.assertIsInstance(response, SeriesEpisodesQuery)
@@ -153,13 +153,13 @@ class TestClientSeriesEpisodes(unittest.TestCase):
         self.client.clear_token()
         # asserts
         with self.assertRaises(ApiException) as e:
-            self.client.get_series_episode_by_absolute_number(296295, absolute_number=1)
+            self.client.get_series_episode_by_absolute_number(296295, '1')
         self.assertTrue(e.exception.status == 401)
 
     def test_get_series_episode_by_absolute_number_404(self):
         # asserts
         with self.assertRaises(ApiException) as e:
-            self.client.get_series_episode_by_absolute_number(0, absolute_number=0)
+            self.client.get_series_episode_by_absolute_number(0, '0')
         self.assertTrue(e.exception.status == 404)
 
 

@@ -11,9 +11,9 @@
   ],
   "swagger": "2.0",
   "info": {
-    "description": "API v2 targets v1 functionality with a few minor additions. The API is accessible via https://api.thetvdb.com and provides the following REST endpoints in JSON format.\n\n\nHow to use this API documentation\n----------------\n\n\nYou may browse the API routes without authentication, but if you wish to send requests to the API and see response data, then you must authenticate.\n1. Obtain a JWT token by `POST`ing  to the `/login` route in the `Authentication` section with your API key and credentials.\n1. Paste the JWT token from the response into the \"JWT Token\" field at the top of the page and click the 'Add Token' button.\n\n\nYou will now be able to use the remaining routes to send requests to the API and get a response.\n\n\nLanguage Selection\n----------------\n\n\nLanguage selection is done via the `Accept-Language` header. At the moment, you may only pass one language abbreviation in the header at a time. Valid language abbreviations can be found at the `/languages` route..\n\n\nAuthentication\n----------------\n\n\nAuthentication to use the API is similar to the How-to section above. Users must `POST` to the `/login` route with their API key and credentials in the following format in order to obtain a JWT token.\n\n`{\"apikey\":\"APIKEY\",\"username\":\"USERNAME\",\"userkey\":\"USERKEY\"}`\n\nNote that the username and key are ONLY required for the `/user` routes. The user's key is labled `Account Identifier` in the account section of the main site.\nThe token is then used in all subsequent requests by providing it in the `Authorization` header. The header will look like: `Authorization: Bearer \u003cyourJWTtoken\u003e`. Currently, the token expires after 24 hours. You can `GET` the `/refresh_token` route to extend that expiration date.\n\n\nVersioning\n----------------\n\n\nYou may request a different version of the API by including an `Accept` header in your request with the following format: `Accept:application/vnd.thetvdb.v$VERSION`. This documentation automatically uses the version seen at the top and bottom of the page.",
+    "description": "API v3 targets v2 functionality with a few minor additions. The API is accessible via https://api.thetvdb.com and provides the following REST endpoints in JSON format.\n\n\nHow to use this API documentation\n----------------\n\n\nYou may browse the API routes without authentication, but if you wish to send requests to the API and see response data, then you must authenticate.\n1. Obtain a JWT token by `POST`ing  to the `/login` route in the `Authentication` section with your API key and credentials.\n1. Paste the JWT token from the response into the \"JWT Token\" field at the top of the page and click the 'Add Token' button.\n\n\nYou will now be able to use the remaining routes to send requests to the API and get a response.\n\n\nLanguage Selection\n----------------\n\n\nLanguage selection is done via the `Accept-Language` header. At the moment, you may only pass one language abbreviation in the header at a time. Valid language abbreviations can be found at the `/languages` route..\n\n\nAuthentication\n----------------\n\n\nAuthentication to use the API is similar to the How-to section above. Users must `POST` to the `/login` route with their API key and credentials in the following format in order to obtain a JWT token.\n\n`{\"apikey\":\"APIKEY\",\"username\":\"USERNAME\",\"userkey\":\"USERKEY\"}`\n\nNote that the username and key are ONLY required for the `/user` routes. The user's key is labled `Account Identifier` in the account section of the main site.\nThe token is then used in all subsequent requests by providing it in the `Authorization` header. The header will look like: `Authorization: Bearer \u003cyourJWTtoken\u003e`. Currently, the token expires after 24 hours. You can `GET` the `/refresh_token` route to extend that expiration date.\n\n\nVersioning\n----------------\n\n\nYou may request a different version of the API by including an `Accept` header in your request with the following format: `Accept:application/vnd.thetvdb.v$VERSION`. This documentation automatically uses the version seen at the top and bottom of the page.",
     "title": "TheTVDB API v2",
-    "version": "2.2.0"
+    "version": "3.0.0"
   },
   "basePath": "/",
   "paths": {
@@ -151,6 +151,91 @@
             "description": "Invalid credentials and/or API token",
             "schema": {
               "$ref": "#/definitions/NotAuthorized"
+            }
+          }
+        }
+      }
+    },
+    "/movies/{id}": {
+      "get": {
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ],
+        "description": "Returns a movies records that contains all information known about a particular movies id.",
+        "tags": [
+          "Movies"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/movieId"
+          },
+          {
+            "$ref": "#/parameters/Accept-Language"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A movie record.",
+            "schema": {
+              "$ref": "#/definitions/Movie"
+            }
+          },
+          "401": {
+            "description": "Returned if your JWT token is missing or expired",
+            "schema": {
+              "$ref": "#/definitions/NotAuthorized"
+            }
+          },
+          "404": {
+            "description": "Returned if the given series ID does not exist",
+            "schema": {
+              "$ref": "#/definitions/NotFound"
+            }
+          }
+        }
+      }
+    },
+    "/movieupdates": {
+      "get": {
+        "security": [
+          {
+            "jwtToken": []
+          }
+        ],
+        "description": "Returns all movies ids updated since a given timestamp.",
+        "tags": [
+          "Movies"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/parameters/since"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "All movies ids updated since a given date",
+            "schema": {
+              "$ref": "#/definitions/UpdatedMovies"
+            }
+          },
+          "401": {
+            "description": "Returned if your JWT token is missing or expired",
+            "schema": {
+              "$ref": "#/definitions/NotAuthorized"
+            }
+          },
+          "405": {
+            "description": "Missing query params are given",
+            "schema": {
+              "$ref": "#/definitions/InvalidQueryParams"
+            }
+          },
+          "422": {
+            "description": "Invalid query params provided",
+            "schema": {
+              "$ref": "#/definitions/InvalidQueryParams"
             }
           }
         }
@@ -1400,6 +1485,14 @@
         }
       }
     },
+    "InvalidQueryParams": {
+      "properties": {
+        "Error": {
+          "type": "string",
+          "default": "No valid query params given"
+        }
+      }
+    },
     "JSONErrors": {
       "type": "object",
       "properties": {
@@ -1465,6 +1558,222 @@
         },
         "previous": {
           "type": "integer"
+        }
+      }
+    },
+    "Movie": {
+      "properties": {
+        "artworks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MovieArtwork"
+          }
+        },
+        "genres": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MovieGenre"
+          }
+        },
+        "id": {
+          "type": "integer"
+        },
+        "people": {
+          "properties": {
+            "actors": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MoviePeople"
+              }
+            },
+            "directors": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MoviePeople"
+              }
+            },
+            "producers": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MoviePeople"
+              }
+            },
+            "writers": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/MoviePeople"
+              }
+            }
+          }
+        },
+        "release_dates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MovieReleaseDate"
+          }
+        },
+        "remoteids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MovieRemoteId"
+          }
+        },
+        "runtime": {
+          "type": "integer"
+        },
+        "trailers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MovieTrailer"
+          }
+        },
+        "translations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MovieTranslation"
+          }
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "MovieArtwork": {
+      "properties": {
+        "artwork_type": {
+          "type": "string"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "id": {
+          "type": "string"
+        },
+        "is_primary": {
+          "type": "boolean"
+        },
+        "tags": {
+          "type": "string"
+        },
+        "thumb_url": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "width": {
+          "type": "integer"
+        }
+      }
+    },
+    "MovieGenre": {
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "MoviePeople": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "imdb_id": {
+          "type": "string"
+        },
+        "is_featured": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "people_facebook": {
+          "type": "string"
+        },
+        "people_id": {
+          "type": "string"
+        },
+        "people_image": {
+          "type": "string"
+        },
+        "people_instagram": {
+          "type": "string"
+        },
+        "people_twitter": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "role_image": {
+          "type": "string"
+        }
+      }
+    },
+    "MovieReleaseDate": {
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "MovieRemoteId": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "source_id": {
+          "type": "integer"
+        },
+        "source_name": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "MovieTrailer": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "MovieTranslation": {
+      "properties": {
+        "is_primary": {
+          "type": "boolean"
+        },
+        "language_code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "overview": {
+          "type": "string"
+        },
+        "tagline": {
+          "type": "string"
         }
       }
     },
@@ -1884,6 +2193,16 @@
         }
       }
     },
+    "UpdatedMovies": {
+      "properties": {
+        "movies": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      }
+    },
     "User": {
       "type": "object",
       "properties": {
@@ -1994,7 +2313,7 @@
   "parameters": {
     "Accept-Language": {
       "type": "string",
-      "description": "Records are returned with the Episode name and Overview in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields.",
+      "description": "Records are returned with the some fields in the desired language, if it exists. If there is no translation for the given language, then the record is still returned but with empty values for the translated fields.",
       "name": "Accept-Language",
       "in": "header"
     },
@@ -2100,6 +2419,14 @@
       "in": "path",
       "required": true
     },
+    "movieId": {
+      "type": "integer",
+      "format": "int64",
+      "description": "ID of the movie",
+      "name": "id",
+      "in": "path",
+      "required": true
+    },
     "page": {
       "type": "string",
       "description": "Page of results to fetch. Defaults to page 1 if not provided.",
@@ -2125,6 +2452,13 @@
       "description": "Name of the series to search for.",
       "name": "name",
       "in": "query"
+    },
+    "since": {
+      "type": "string",
+      "description": "Epoch time to start your date range.",
+      "name": "since",
+      "in": "query",
+      "required": true
     },
     "slug": {
       "type": "string",
@@ -2187,6 +2521,10 @@
     {
       "description": "Available languages and information",
       "name": "Languages"
+    },
+    {
+      "description": "Information about a specific movie",
+      "name": "Movies"
     }
   ]
 }
