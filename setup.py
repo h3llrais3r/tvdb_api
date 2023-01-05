@@ -40,7 +40,7 @@ setup(
     description='Client implementation for TheTVDB API v2 and v3',
     long_description=readme,
     author='h3llrais3r',
-    author_email='pooh_beer_1@hotmail.com',
+    author_email='h3llrais3r.github@gmail.com',
     url='https://github.com/h3llrais3r/tvdb_api',
     keywords=['swagger', 'tvdb', 'api', 'v2', 'v3', 'client'],
     install_requires=install_requires,
